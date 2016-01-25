@@ -1,0 +1,77 @@
+{{extend 'layout.html'}}
+
+<h3>Notebook | All in One </h3>
+
+{{if grid:}}
+    <div class="">
+        <hr class="bs-docs-separator">
+    <!-- #############  CREATE_FORM  ############# -->
+        {{if grid.create_form:}}
+            <h5>Ingrese los datos</h5>
+            {{=grid.create_form}}
+
+    <!-- #############  UPDATE_FORM  ############# -->
+        {{elif grid.update_form:}}
+            <h5>Modifique los datos y luego presione el boton 
+            {{=grid.update_form}}
+
+    <!-- #############  VIEW_FORM  ############# -->
+        {{elif grid.view_form:}}
+
+            {{=grid.view_form.custom.begin}}
+
+                <div class="table table-bordered  span4">
+                    {{=IMG(_src=URL('static','images/dispositivos/cpu.png') )}}
+                    {{=grid.view_form.custom.widget.microprocesador_id}}
+
+                    <br/>{{=IMG(_src=URL('static','images/dispositivos/monitor.png') )}}
+                    {{=grid.view_form.custom.widget.pulgadas}}"
+                    
+                    <br/>{{=IMG(_src=URL('static','images/dispositivos/hd.png') )}}
+                    {{=grid.view_form.custom.widget.disco}} GB
+
+                    <br/>{{=IMG(_src=URL('static','images/dispositivos/memoria1.png') )}}
+                    {{=grid.view_form.custom.widget.memoria}} MB
+
+                    <br/>{{=IMG(_src=URL('static','images/dispositivos/system.png') )}}
+                    {{=grid.view_form.custom.widget.so}}
+
+                    <br/>{{=IMG(_src=URL('static','images/dispositivos/drive_optical.png') )}}
+                    {{=grid.view_form.custom.widget.unidad_optica}}
+                </div>
+
+                <div class="table table-bordered  span3">
+                    {{=IMG(_src=URL('static','images/user/people.png') )}}
+                    {{=grid.view_form.custom.widget.personal_id}}
+
+                    <br/>{{=IMG(_src=URL('static','images/user/contacts.png') )}}
+                    {{=grid.view_form.custom.widget.area_id}}
+                </div>
+
+                <div class="table table-bordered span3">
+                    (prueba)
+                    <br/>{{=IMG(_src=URL('static','images/action/HTTP.png') )}}
+                    172.19.0.5 
+
+                    <br/>{{=IMG(_src=URL('static','images/action/HTTP.png') )}}
+                    00:c2:c6:30:5d:0e
+                </div>
+
+
+            {{=grid.view_form.custom.end}}
+                
+    <!--##############  GRID_FORM  ############# -->
+        {{else:}}
+            {{=grid}}
+        {{pass}}
+
+    </div>
+{{pass}}
+
+<style>
+    /*Borrar esta directiva*/
+    img{
+        height: 48px;
+        width: 48px;
+    }
+</style>

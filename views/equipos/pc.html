@@ -1,0 +1,127 @@
+{{extend 'layout.html'}}
+
+<h3>PC</h3>
+
+{{if grid:}}
+    <div class="">
+        <hr class="bs-docs-separator">
+    <!-- #############  CREATE_FORM  ############# -->
+        {{if grid.create_form:}}
+
+            <h5>Ingrese los datos</h5>
+
+            {{=madre_modal}}
+            {{=micro_modal}}
+            
+            {{form = grid.create_form}}
+            {{=form.custom.begin}}
+
+                <div class="col-md-5">
+                    <div class="col-md-12">
+                    {{=form.custom.label.microprocesador_id}}: {{=form.custom.comment.microprocesador_id}}
+                    {{=form.custom.widget.microprocesador_id}}
+                    </div>
+
+                    <div class="col-md-12">
+                    {{=form.custom.label.placa_madre_id}}: {{=form.custom.comment.placa_madre_id}}
+                    {{=form.custom.widget.placa_madre_id}}
+                    </div>
+
+                    <div class="col-md-6">
+                        {{=form.custom.label.disco}}: {{=form.custom.widget.disco}}
+                    </div>
+                    <div class="col-md-6">
+                        {{=form.custom.label.memoria}}: {{=form.custom.widget.memoria}}
+                    </div>
+                    <div class="col-md-6">
+                    {{=form.custom.label.unidad_optica}}: {{=form.custom.widget.unidad_optica}}
+                    </div>
+                    <div class="col-md-6">
+                    {{=form.custom.label.so}}: {{=form.custom.widget.so}}
+                    </div>
+                    <div class="col-md-12">
+                    {{=form.custom.label.observaciones}}: {{=form.custom.widget.observaciones}}
+                    </div>
+                    <div class="col-md-12">
+                    {{=form.custom.label.responsable_id}}: {{=form.custom.widget.responsable_id}}
+                    </div>
+                    <div class="col-md-12">
+                    {{=form.custom.label.area_id}}: {{=form.custom.widget.area_id}}
+                    </div>
+                    <div class="col-md-12">
+                        {{=form.custom.submit}}
+                    </div>
+                </div>
+
+            {{=form.custom.end}}
+
+    <!-- #############  UPDATE_FORM  ############# -->
+        {{elif grid.update_form:}}
+            <div class="col-md-8">
+                <h5>Modifique los datos y luego presione el boton 
+                {{=grid.update_form}}
+            </div>
+            
+
+    <!-- #############  VIEW_FORM  ############# -->
+        {{elif grid.view_form:}}
+            {{grid.view_form}}
+
+            {{=grid.view_form.custom.begin}}
+
+                <div class="col-md-4">
+                    {{=IMG(_src=URL('static','images/dispositivos/cpu.png') )}}
+                    {{=grid.view_form.custom.widget.microprocesador_id}}
+
+                    <br/>{{=IMG(_src=URL('static','images/dispositivos/motherboard.png') )}}
+                    {{=grid.view_form.custom.widget.placa_madre_id}}
+                    
+                    <br/>{{=IMG(_src=URL('static','images/dispositivos/hd.png') )}}
+                    {{=grid.view_form.custom.widget.disco}} GB
+
+                    <br/>{{=IMG(_src=URL('static','images/dispositivos/memoria1.png') )}}
+                    {{=grid.view_form.custom.widget.memoria}} MB
+
+                    <br/>{{=IMG(_src=URL('static','images/dispositivos/system.png') )}}
+                    {{=grid.view_form.custom.widget.so}}
+
+                    <br/>{{=IMG(_src=URL('static','images/dispositivos/drive_optical.png') )}}
+                    {{=grid.view_form.custom.widget.unidad_optica}}
+                </div>
+
+                <div class="col-md-3">
+                    {{=IMG(_src=URL('static','images/user/people.png') )}}
+                    {{=grid.view_form.custom.widget.responsable_id}}
+
+                    <br/>{{=IMG(_src=URL('static','images/user/contacts.png') )}}
+                    {{=grid.view_form.custom.widget.area_id}}
+                </div>
+                
+
+            {{=grid.view_form.custom.end}}
+                
+    <!--##############  GRID_FORM  ############# -->
+        {{else:}}
+            {{=grid}}
+        {{pass}}
+
+    </div>
+{{pass}}
+
+<style>
+    a img{
+        height: 16px;
+        width: 16px;
+    }
+
+    div.table{
+        padding: 10px;
+    }
+
+    /*Borrar esta directiva*/
+    img{
+        height: 48px;
+        width: 48px;
+    }
+
+</style>

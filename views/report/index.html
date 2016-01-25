@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <style>
+            @page {
+                size: a4;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id='titulo_curso'>
+            <center><h1>Agentes</h1></center>
+        </div>
+
+        {{for value in agentes:}}
+            <br/>{{=value.apellido}}, {{=value.nombres}}
+            <!-- <pdf:nextpage> -->
+        {{pass}}
+
+    </body>
+</html>

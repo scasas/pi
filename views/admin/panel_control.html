@@ -1,0 +1,65 @@
+{{extend 'layout.html'}}
+
+<h3>Panel de Control</h3>
+
+<br/><br/>
+
+<table>
+    <tr>
+        <td>
+            {{=A(IMG(_src=URL('static','images/user/people.png')),_href=URL(c='admin', f='panel_user'), _class='btn')}}
+        </td>
+        <td>
+            {{=A(IMG(_src=URL('static','images/user/social_network.png')),_href=URL(c='admin', f='panel_group'), _class='btn')}}
+        </td>
+        <td>
+            {{=A(IMG(_src=URL('static','images/user/users.png')),_href=URL(c='admin', f='panel_membership'), _class='btn')}}
+        </td>
+        <td>
+            {{=A(IMG(_src=URL('static','images/user/user_password.png')),_href=URL(c='admin', f='panel_permission'), _class='btn')}}
+        </td>
+
+        <!-- las dos siguientes entrados no se visualizan -->
+        <td>
+            {{A(IMG(_src=URL('static','images/user/user_signature.png')),_href=URL(c='admin', f='panel_sessiones'), _class='btn')}}
+        </td>
+        <td>
+            {{A(IMG(_src=URL('static','images/user/user_signature.png')),_href=URL(c='admin', f='marcas'), _class='btn')}}
+        </td>
+    </tr>
+    <tr>
+        <td><center>USUARIOS</center></td>
+        <td><center>GRUPOS</center></td>
+        <td><center>PERFILES</center></td>
+        <td><center>PERMISOS</center></td>
+        <!-- <td><center>SESSIONES</center></td>
+        <td><center>MARCAS</center></td> -->
+    </tr>
+</table>
+
+
+{{if grid:}}
+    <div class="well">
+        <hr class="bs-docs-separator">
+    <!-- #############  CREATE_FORM  ############# -->
+        {{if grid.create_form:}}
+            <h5>Ingrese los datos</h5>
+            {{=grid.create_form}}
+
+    <!-- #############  UPDATE_FORM  ############# -->
+        {{elif grid.update_form:}}
+            <h5>Modifique los datos y luego presione el boton 
+            {{=grid.update_form}}
+
+    <!-- #############  VIEW_FORM  ############# -->
+        {{elif grid.view_form:}}
+
+            {{=grid.view_form}}
+                
+    <!--##############  GRID_FORM  ############# -->
+        {{else:}}
+            {{=grid}}
+        {{pass}}
+
+    </div>
+{{pass}}

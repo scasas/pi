@@ -1,0 +1,192 @@
+{{extend 'layout.html'}}
+
+<i>Area:</i>
+
+{{
+    usr_pc = area['pc']
+    usr_monitores = area['monitores']
+    usr_impresoras = area['impresoras']
+    usr_ups_estabilizador = area['ups_estabilizador']
+    usr_portatiles = area['portatiles']
+}}
+
+<h3 class="title">
+    <strong>{{=area['nombre']}}</strong>
+</h3>
+
+<br/>
+
+{{listado_volver = A('VOLVER AL LISTADO',_href=URL(c='rrhh', f='areas'), _class='btn btn-default')}}
+
+{{=listado_volver}}
+<a href="javascript:location.reload();" class="btn btn-default">RECARGAR</a>
+
+<br/><br/>
+
+<div class="btn-group">    
+    {{=A(IMG(_src=URL('static','images/dispositivos/server.png')), _href=URL(c='rrhh', f='areas', vars=dict(id=1) ), _class='btn btn-default' )}}
+    
+    {{=A(IMG(_src=URL('static','images/dispositivos/monitor.png')), _href=URL(c='admin', f='panel_user'), _class='btn btn-default' )}}
+    
+    {{=A(IMG(_src=URL('static','images/dispositivos/status.png')), _href=URL(c='admin', f='panel_user'), _class='btn btn-default' )}}
+    
+    {{=A(IMG(_src=URL('static','images/dispositivos/print.png')), _href=URL(c='admin', f='panel_user'), _class='btn btn-default' )}}    
+</div>
+
+<br/><br/>
+
+
+<div class="tabbable span12"> 
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#tab_pc" data-toggle="tab">
+                <i class='icon-briefcase'></i> PC 
+            </a>
+        </li>
+        <li>
+            <a href="#tab_monitores" data-toggle="tab">
+                <i class='icon-exclamation-sign'></i> Monitores
+            </a>
+        </li>
+        <li>
+            <a href="#tab_impresoras" data-toggle="tab">
+                <i class='icon-shopping-cart'></i> Impresoras
+            </a>
+        </li>
+        <li>
+            <a href="#tab_ups_estabilizadores" data-toggle="tab">
+                <i class='icon-shopping-cart'></i> UPS | Estabilizadores
+            </a>
+        </li>
+        <li>
+            <a href="#tab_portatiles" data-toggle="tab">
+                <i class='icon-shopping-cart'></i> Notebook & All in One
+            </a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab_pc">
+            <table class="table table-bordered span6">
+                <tr>
+                    <th class="span2">PLaca Madre</th>
+                    <th class="span2">Micro</th>
+                    <th class="span1">Memoria RAM</th>
+                    <th class="span1">Disco Rígido</th>
+                </tr>
+                {{for reg in usr_pc:}}
+                    <tr>
+                        <td>{{=reg.placa_madre_id.marca_id.nombre}} - {{=reg.placa_madre_id.modelo}}</td>
+                        <td>{{=reg.microprocesador_id.marca_id.nombre}} - {{=reg.microprocesador_id.modelo}}</td>
+                        <td>{{=reg.memoria}} Mb</td>
+                        <td>{{=reg.disco}} Gb</td>
+                    </tr>
+                {{pass}}
+            </table>
+        </div>
+
+        <div class="tab-pane" id="tab_impresoras">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Marca | Modelo</th>
+                    <th>Nro Serie</th>
+                    <th>Fecha Compra</th>
+                    <th>Observaciones</th>
+                </tr>
+                {{for reg in usr_impresoras:}}
+                    <tr>
+                        <td>{{=reg.impresora_id.marca_id.nombre}} - {{=reg.impresora_id.modelo}}</td>
+                        <td>{{=reg.nro_serie}}</td>
+                        <td>{{=reg.fecha_compra}}</td>
+                        <td>{{=reg.observaciones}}</td>
+                    </tr>
+                {{pass}}
+            </table>
+        </div>
+
+        <div class="tab-pane" id="tab_monitores">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Marca | Modelo</th>
+                    <th>Nro Serie</th>
+                    <th>Fecha Compra</th>
+                    <th>Observaciones</th>
+                </tr>
+                {{for reg in usr_monitores:}}
+                    <tr>
+                        <td>{{=reg.monitor_id.marca_id.nombre}} - {{=reg.monitor_id.modelo}}</td>
+                        <td>{{=reg.nro_serie}}</td>
+                        <td>{{=reg.fecha_compra}}</td>
+                        <td>{{=reg.observaciones}}</td>
+                    </tr>
+                {{pass}}
+            </table>
+        </div>
+
+        <div class="tab-pane" id="tab_ups_estabilizadores">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Marca | Modelo</th>
+                    <th>Nro Serie</th>
+                    <th>Fecha Compra</th>
+                    <th>Observaciones</th>
+                </tr>
+                {{for reg in usr_ups_estabilizador:}}
+                    <tr>
+                        <td>{{=reg.monitor_id.marca_id.nombre}} - {{=reg.monitor_id.modelo}}</td>
+                        <td>{{=reg.nro_serie}}</td>
+                        <td>{{=reg.fecha_compra}}</td>
+                        <td>{{=reg.observaciones}}</td>
+                    </tr>
+                {{pass}}
+            </table>
+        </div>
+        
+        <div class="tab-pane" id="tab_portatiles">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Marca | Modelo</th>
+                    <th>Nro Serie</th>
+                    <th>Fecha Compra</th>
+                    <th>Observaciones</th>
+                </tr>
+                {{for reg in usr_portatiles:}}
+                    <tr>
+                        <td>{{=reg.monitor_id.marca_id.nombre}} - {{=reg.monitor_id.modelo}}</td>
+                        <td>{{=reg.nro_serie}}</td>
+                        <td>{{=reg.fecha_compra}}</td>
+                        <td>{{=reg.observaciones}}</td>
+                    </tr>
+                {{pass}}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+{{BEAUTIFY(area)}}
+
+{{response.toolbar()}}
+
+
+<style type='text/css'>
+    .title{
+        color: green;
+        font-size: 1.8em;
+    }
+    table th img {
+        width: 80px;
+        height: 80px;
+    }
+    /*Borrar esta directiva*/
+    img{
+        height: 48px;
+        width: 48px;
+    }
+</style>
+<script>
+    $(document).ready(function(){
+        
+    });
+</script>

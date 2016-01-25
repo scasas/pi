@@ -1,0 +1,48 @@
+{{extend 'layout.html'}}
+
+<h3>Stock Impresoras</h3>
+
+{{if grid:}}
+    <div class="">
+        <hr class="bs-docs-separator">
+    <!-- #############  CREATE_FORM  ############# -->
+        {{if grid.create_form:}}
+
+            <h5>Ingrese los datos</h5>
+            {{grid.create_form}}
+            {{=form.custom.begin}}
+                <div class="span5">
+                    <br/>{{=form.custom.label.impresora_id}}: {{=form.custom.widget.impresora_id}}
+
+                    <br/>{{=form.custom.label.nro_serie}}: {{=form.custom.widget.nro_serie}}
+                    <br/>{{=form.custom.label.fecha_compra}}: {{=form.custom.widget.fecha_compra}}
+                    <br/>{{=form.custom.label.estado}}: {{=form.custom.widget.estado}}
+                    <br/>{{=form.custom.label.observaciones}}: {{=form.custom.widget.observaciones}}
+                
+                    <br/>{{=form.custom.label.responsable_id}}: {{=form.custom.widget.responsable_id}}
+                    <br/>{{=form.custom.label.area_id}}: {{=form.custom.widget.area_id}}
+                    
+                    <div>
+                        {{=form.custom.submit}}
+                    </div>
+                </div>
+
+            {{=form.custom.end}}
+
+    <!-- #############  UPDATE_FORM  ############# -->
+        {{elif grid.update_form:}}
+            <h5>Modifique los datos y luego presione el boton 
+            {{=grid.update_form}}
+
+    <!-- #############  VIEW_FORM  ############# -->
+        {{elif grid.view_form:}}
+
+            {{=grid.view_form}}
+                
+    <!--##############  GRID_FORM  ############# -->
+        {{else:}}
+            {{=grid}}
+        {{pass}}
+
+    </div>
+{{pass}}

@@ -1,0 +1,174 @@
+{{extend 'layout.html'}}
+
+<i>Agente:</i>
+
+{{
+    usr_pc = agente['pc']
+    usr_portatiles = agente['portatiles']
+    usr_monitores = agente['monitores']
+    usr_impresoras = agente['impresoras']
+    usr_ups_estabilizador = agente['ups_estabilizador']
+}}
+
+<h3 class="title">
+    <strong>{{=agente['datos']['apellido']}}, {{=agente['datos']['nombres']}}</strong>
+</h3>
+
+<h5><i>{{=agente['datos']['area_id'].nombre}}</i></h5>
+
+<br/>
+
+{{listado_volver = A('VOLVER AL LISTADO',_href=URL(c='rrhh', f='agentes'), _class='btn btn-default')}}
+
+{{=listado_volver}}
+<a href="javascript:location.reload();" class="btn btn-default">RECARGAR</a>
+
+<br/><br/>
+
+<div class="btn-group">    
+    {{=A(IMG(_src=URL('static','images/dispositivos/server.png')), _href=URL(c='rrhh', f='agentes', vars=dict(id=1) ), _class='btn btn-default' )}}
+    
+    {{=A(IMG(_src=URL('static','images/dispositivos/monitor.png')), _href=URL(c='admin', f='panel_user'), _class='btn btn-default' )}}
+    
+    {{=A(IMG(_src=URL('static','images/dispositivos/status.png')), _href=URL(c='admin', f='panel_user'), _class='btn btn-default' )}}
+    
+    {{=A(IMG(_src=URL('static','images/dispositivos/print.png')), _href=URL(c='admin', f='panel_user'), _class='btn btn-default' )}}    
+</div>
+
+<br/><br/>
+
+
+<table class="table table-bordered span6">
+    <tr>
+        <th></th>
+        <th>
+            ID
+        </th>
+        <th>
+            Descripción
+        </th>
+    </tr>
+    {{for reg in usr_pc:}}
+        <tr>
+            <th>{{=IMG(_src=URL('static','images/dispositivos/server.png') )}}</th>
+            <td>{{=reg.id}}</td>
+            <td>
+
+                <br/>{{=IMG(_src=URL('static','images/dispositivos/cpu.png') )}}
+                {{=reg.microprocesador_id.marca_id.nombre}} {{=reg.microprocesador_id.modelo}}
+
+                <br/>{{=IMG(_src=URL('static','images/dispositivos/motherboard.png') )}}
+                {{=reg.placa_madre_id.marca_id.nombre}} {{=reg.placa_madre_id.modelo}}
+                
+                <br/>{{=IMG(_src=URL('static','images/dispositivos/hd.png') )}}
+                {{=reg.disco}} GB
+
+                <br/>{{=IMG(_src=URL('static','images/dispositivos/memoria1.png') )}}
+                {{=reg.memoria}} MB
+
+                <br/>{{=IMG(_src=URL('static','images/dispositivos/system.png') )}}
+                {{=reg.so}}
+
+                <br/>{{=IMG(_src=URL('static','images/dispositivos/drive_optical.png') )}}
+                
+            </td>
+        </tr>
+    {{pass}}
+
+
+    {{for reg in usr_portatiles:}}
+            <tr>
+                <th>{{=IMG(_src=URL('static','images/dispositivos/notebook.png') )}}</th>
+                <td>{{=reg.id}}</td>
+                <td>
+                    {{=reg.modelo}}
+
+                    <br/>{{=IMG(_src=URL('static','images/dispositivos/cpu.png') )}}
+                    {{=reg.microprocesador_id.marca_id.nombre}} {{=reg.microprocesador_id.modelo}}
+                    
+                    <br/>{{=IMG(_src=URL('static','images/dispositivos/hd.png') )}}
+                    {{=reg.disco}} GB
+
+                    <br/>{{=IMG(_src=URL('static','images/dispositivos/memoria1.png') )}}
+                    {{=reg.memoria}} MB
+
+                    <br/>{{=IMG(_src=URL('static','images/dispositivos/system.png') )}}
+                    {{=reg.so}}
+
+                    <br/>{{=IMG(_src=URL('static','images/dispositivos/drive_optical.png') )}}
+                    {{=reg.unidad_optica}}
+                    
+                </td>
+            </tr>
+    {{pass}}
+
+
+    {{
+    if len(usr_monitores)>0:
+        for reg in usr_monitores:}}
+            <tr>
+                <th>{{=IMG(_src=URL('static','images/dispositivos/monitor.png') )}}</th>
+                <td>{{=reg.id}}</td>
+                <td>
+                    {{=reg.monitor_id.marca_id.nombre}} {{=reg.monitor_id.modelo}}
+                    {{=reg.nro_serie}}
+                    {{=reg.fecha_compra}}
+                </td>
+            </tr>
+        {{
+        pass
+    pass
+    }}
+
+    {{for reg in usr_impresoras:}}
+        <tr>
+            <th>{{=IMG(_src=URL('static','images/dispositivos/print.png') )}}</th>
+            <td>{{=reg.id}}</td>
+            <td>
+                {{=reg.impresora_id.marca_id.nombre}} {{=reg.impresora_id.modelo}}
+                {{=reg.nro_serie}}
+                {{=reg.fecha_compra}}
+                {{=reg.observaciones}}
+            </td>
+        </tr>
+    {{pass}}
+    {{for reg in usr_ups_estabilizador:}}
+        <tr>
+            <th>{{=IMG(_src=URL('static','images/dispositivos/status.png') )}}</th>
+            <td>{{=reg.id}}</td>
+            <td>
+                {{=reg.ups_estabilizador_id.marca_id.nombre}} {{=reg.ups_estabilizador_id.modelo}}
+                {{=reg.nro_serie}}
+                {{=reg.fecha_compra}}
+                {{=reg.observaciones}}
+            </td>
+        </tr>
+    {{pass}}
+</table>
+
+
+{{BEAUTIFY(agente)}}
+
+{{response.toolbar()}}
+
+
+<style type='text/css'>
+    .title{
+        color: green;
+        font-size: 1.8em;
+    }
+    table th img {
+        width: 80px;
+        height: 80px;
+    }
+    /*Borrar esta directiva*/
+    img{
+        height: 48px;
+        width: 48px;
+    }
+</style>
+<script>
+    $(document).ready(function(){
+        
+    });
+</script>
