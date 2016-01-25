@@ -47,7 +47,7 @@ def placa_madre():
 
 @auth.requires_login()
 def pc():
-    from applications.modal.modules.modal import Modal
+    from applications.pi.modules.modal import Modal
 
     field1 = db.pc.microprocesador_id
     field2 = db.pc.placa_madre_id
