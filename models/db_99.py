@@ -42,6 +42,7 @@ Stock_impresoras.area_id.label = 'Area'
 # # PC
 Pc.microprocesador_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Microprocesadores.id, lambda r: r.marca_id.nombre + ' ' + r.modelo + ' ' + r.frecuencia_trabajo + ' Ghz', orderby = Microprocesadores.marca_id | Microprocesadores.modelo ))
 Pc.placa_madre_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Placa_madre.id,  lambda r: r.marca_id.nombre + ' ' + r.modelo, orderby = Placa_madre.marca_id | Placa_madre.modelo))
+Pc.responsable_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Agentes.id,  lambda r: r.apellido + ' ' + r.nombres, orderby = Agentes.apellido | Agentes.nombres))
 
 # Placa Madre ------------------------------------------------------------------
 Placa_madre.marca_id.requires = IS_IN_DB(db(db.tab_marcas.placa_madre == True), Marcas.id, '%(nombre)s')
