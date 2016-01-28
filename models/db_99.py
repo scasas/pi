@@ -52,7 +52,7 @@ Microprocesadores.marca_id.requires = IS_IN_DB(db(db.tab_marcas.microprocesador 
 
 # Monitores
 Monitores.marca_id.requires = IS_IN_DB(db(db.tab_marcas.monitor == True), Marcas.id, '%(nombre)s')
-# Stock_monitores.responsable_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Agentes.id, '%(apellido)s %(nombres)s'))
+Stock_monitores.responsable_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Agentes.id, '%(apellido)s %(nombres)s'))
 
 # Impresoras
 Impresoras.marca_id.requires = IS_IN_DB(db(db.tab_marcas.impresora == True), Marcas.id, '%(nombre)s')
