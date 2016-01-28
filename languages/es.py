@@ -349,6 +349,7 @@
 'Printers': 'Printers',
 'Profile': 'Perfil',
 'Profile updated': 'Perfil actualizado',
+'Propiedad': 'Propiedad',
 'Pulgadas': 'Pulgadas',
 'pygraphviz library not found': 'pygraphviz library not found',
 'Python': 'Python',

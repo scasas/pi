@@ -21,19 +21,23 @@ def agentes():
 @auth.requires_login()
 def agente():
     # ABM & Consulta del equipamiento de un determinado agente
+    # response.view = 'test.html'
+
     agente = {}
 
     agente['datos'] = Agentes(request.vars.id) or redirect(URL(c='rrhh', f='agentes'))
 
+    # r = request.vars
+
     agente['pc'] = db(db.pc.responsable_id == request.vars.id ).select()
     agente['monitores'] = db(db.stock_monitores.responsable_id == request.vars.id ).select()
     agente['impresoras'] = db(db.stock_impresoras.responsable_id == request.vars.id ).select()
-    agente['ups_estabilizador'] = {}#db(db.stock_ups_estabilizador.responsable_id == request.vars.id ).select()
+    agente['ups_estabilizador'] = db(db.stock_ups_estabilizador.responsable_id == request.vars.id ).select()
     agente['portatiles'] = {}
 
-    grid = SQLFORM.grid(Agentes, csv=False, showbuttontext=False)
+    # grid = SQLFORM.grid(Agentes, csv=False, showbuttontext=False)
 
-    return locals()
+    return dict(agente = agente)
 
 
 @auth.requires_login()

@@ -1,0 +1,51 @@
+{{BEAUTIFY(agente)}}
+
+{{=BEAUTIFY(agente["pc"])}}
+{{=BEAUTIFY(agente['monitores'])}}
+{{=BEAUTIFY(agente['impresoras'])}}
+
+
+<table class="table table-bordered span6" border="1">
+    <tr>
+        <th></th>
+        <th>
+            ID
+        </th>
+        <th>
+            Descripción
+        </th>
+    </tr>
+
+{{if len(agente["pc"]) > 0:}}
+	{{for reg in agente["pc"]:}}
+		
+
+		<tr>
+            <th>{{=IMG(_src=URL('static','images/dispositivos/server.png') )}}</th>
+            <td>{{=reg.id}}</td>
+            <td>
+
+                <br/>{{=IMG(_src=URL('static','images/dispositivos/cpu.png') )}}
+                {{=reg.microprocesador_id.marca_id.nombre}} {{=reg.microprocesador_id.modelo}}
+
+                <br/>{{=IMG(_src=URL('static','images/dispositivos/motherboard.png') )}}
+                {{=reg.placa_madre_id.marca_id.nombre or 'EMPTY '}} {{=reg.placa_madre_id.modelo or ' EMPTY '}}
+                
+                <br/>{{=IMG(_src=URL('static','images/dispositivos/hd.png') )}}
+                {{=reg.disco}} GB
+
+                <br/>{{=IMG(_src=URL('static','images/dispositivos/memoria1.png') )}}
+                {{=reg.memoria}} MB
+
+                <br/>{{=IMG(_src=URL('static','images/dispositivos/system.png') )}}
+                {{=reg.so}}
+
+                <br/>{{=IMG(_src=URL('static','images/dispositivos/drive_optical.png') )}}
+                
+            </td>
+        </tr>
+
+	{{pass}}
+{{pass}}
+
+</table>
