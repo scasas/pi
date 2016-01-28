@@ -29,7 +29,6 @@
 
 <br/><br/>
 
-
 <table class="table table-bordered span6">
     <tr>
         <th></th>
@@ -40,9 +39,8 @@
             Descripción
         </th>
     </tr>
-    {{
-    if len(agente["pc"])>0:
-        for reg in agente["pc"]:}}
+    {{if len(agente["pc"])>0:}}
+        {{for reg in agente["pc"]:}}
             <tr>
                 <th>{{=IMG(_src=URL('static','images/dispositivos/server.png') )}}</th>
                 <td>{{=reg.id}}</td>
@@ -67,12 +65,11 @@
                     
                 </td>
             </tr>
-        {{
-        pass
-    pass
+        {{pass}}
+    {{pass}}
     
-    if len(agente["portatiles"])>0:
-        for reg in agente["portatiles"]:}}
+    {{if len(agente["portatiles"]) >0:}}
+        {{for reg in agente["portatiles"]:}}
             <tr>
                 <th>{{=IMG(_src=URL('static','images/dispositivos/notebook.png') )}}</th>
                 <td>{{=reg.id}}</td>
@@ -96,12 +93,11 @@
                     
                 </td>
             </tr>
-        {{
-        pass
-    pass
+        {{pass}}
+    {{pass}}
 
-    if len(agente["monitores"])>0:
-        for reg in agente["monitores"]:}}
+    {{if len(agente["monitores"])>0:}}
+        {{for reg in agente["monitores"]:}}
             <tr>
                 <th>{{=IMG(_src=URL('static','images/dispositivos/monitor.png') )}}</th>
                 <td>{{=reg.id}}</td>
@@ -111,13 +107,12 @@
                     {{=reg.fecha_compra}}
                 </td>
             </tr>
-        {{
-        pass
-    pass
+        {{pass}}
+    {{pass}}
     
 
-    if len(agente["impresoras"])>0:
-        for reg in agente["impresoras"]:}}
+    {{if len(agente["impresoras"])>0:}}
+        {{{for reg in agente["impresoras"]:}}
         <tr>
             <th>{{=IMG(_src=URL('static','images/dispositivos/print.png') )}}</th>
             <td>{{=reg.id}}</td>
@@ -128,11 +123,11 @@
                 {{=reg.observaciones}}
             </td>
         </tr>
-        {{pass
-    pass
+        {{pass}}
+    {{pass}}
 
-    if len(agente["ups_estabilizador"])>0:
-        for reg in agente["ups_estabilizador"]:}}
+    {{if len(agente["ups_estabilizador"])>0:}}
+        {{for reg in agente["ups_estabilizador"]:}}
         <tr>
             <th>{{=IMG(_src=URL('static','images/dispositivos/status.png') )}}</th>
             <td>{{=reg.id}}</td>
@@ -143,15 +138,9 @@
                 {{=reg.observaciones}}
             </td>
         </tr>
-        {{pass
-    pass}}
+        {{pass}}
+    {{pass}}
 </table>
-
-
-{{BEAUTIFY(agente)}}
-
-{{response.toolbar()}}
-
 
 <style type='text/css'>
     .title{
