@@ -42,7 +42,7 @@ Stock_impresoras.area_id.label = 'Area'
 # # PC
 Pc.microprocesador_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Microprocesadores.id, lambda r: r.marca_id.nombre + ' ' + r.modelo + ' ' + r.frecuencia_trabajo + ' Ghz', orderby = Microprocesadores.marca_id | Microprocesadores.modelo ))
 Pc.placa_madre_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Placa_madre.id,  lambda r: r.marca_id.nombre + ' ' + r.modelo, orderby = Placa_madre.marca_id | Placa_madre.modelo))
-Pc.responsable_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Agentes.id,  lambda r: r.apellido + ' ' + r.nombres, orderby = Agentes.apellido | Agentes.nombres))
+Pc.responsable_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Agentes.id,  lambda r: r.apellido.upper() + ' ' + r.nombres.upper(), orderby = Agentes.apellido | Agentes.nombres))
 
 # Placa Madre ------------------------------------------------------------------
 Placa_madre.marca_id.requires = IS_IN_DB(db(db.tab_marcas.placa_madre == True), Marcas.id, '%(nombre)s')
@@ -52,11 +52,12 @@ Microprocesadores.marca_id.requires = IS_IN_DB(db(db.tab_marcas.microprocesador 
 
 # Monitores
 Monitores.marca_id.requires = IS_IN_DB(db(db.tab_marcas.monitor == True), Marcas.id, '%(nombre)s')
-Stock_monitores.responsable_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Agentes.id, '%(apellido)s %(nombres)s'))
+Stock_monitores.responsable_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Agentes.id,  lambda r: r.apellido.upper() + ' ' + r.nombres.upper(), orderby = Agentes.apellido | Agentes.nombres))
+Stock_monitores.monitor_id.requires = IS_IN_DB(db, Monitores.id,  lambda r: r.marca_id.nombre.upper() + ' ' + r.modelo.upper(), orderby = Monitores.marca_id | Monitores.modelo)
 
 # Impresoras
 Impresoras.marca_id.requires = IS_IN_DB(db(db.tab_marcas.impresora == True), Marcas.id, '%(nombre)s')
-Stock_impresoras.responsable_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Agentes.id, lambda r: r.apellido.upper() + ' ' + r.nombres.upper(), orderby = Agentes.apellido | Agentes.nombres))
+Stock_impresoras.responsable_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Agentes.id,  lambda r: r.apellido.upper() + ' ' + r.nombres.upper(), orderby = Agentes.apellido | Agentes.nombres))
 Stock_impresoras.impresora_id.requires = IS_IN_DB(db, Impresoras.id,  lambda r: r.marca_id.nombre.upper() + ' ' + r.modelo.upper(), orderby =~ Impresoras.marca_id | Impresoras.modelo)
 
 # UPS | Estabilizadore
@@ -65,7 +66,6 @@ Ups_estabilizador.marca_id.requires = IS_IN_DB(db(db.tab_marcas.ups_estabilizado
 
 
 # WRITABLE ---------------------------------------------------------------------
-
 Stock_impresoras.identificador.writable = False
 
 # Readable ---------------------------------------------------------------------

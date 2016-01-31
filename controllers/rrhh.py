@@ -66,4 +66,7 @@ def area():
     area['ups_estabilizador'] = {} #db(db.stock_ups_estabilizador.area_id == request.vars.id ).select()
     area['portatiles'] = {}
 
+    area['monitores'] = area['monitores'].sort(lambda row: row.monitor_id.marca_id.nombre) 
+    area['impresoras'] = area['impresoras'].sort(lambda row: row.impresora_id.marca_id.nombre) 
+
     return locals()
