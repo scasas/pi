@@ -67,3 +67,6 @@ Ups_estabilizador.marca_id.requires = IS_IN_DB(db(db.tab_marcas.ups_estabilizado
 # WRITABLE ---------------------------------------------------------------------
 
 Stock_impresoras.identificador.writable = False
+
+# Readable ---------------------------------------------------------------------
+Stock_impresoras.id.readable = True

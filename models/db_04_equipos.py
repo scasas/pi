@@ -1,3 +1,8 @@
+def code_generator(record,id):
+    prefix = 'art-'
+    record.codigo = prefix + str(100 + id)
+    return record
+
 Stock_impresoras = db.define_table('stock_impresoras'
     , Field('identificador')
     , Field('impresora_id', Impresoras)
@@ -9,6 +14,8 @@ Stock_impresoras = db.define_table('stock_impresoras'
     , Field('observaciones', 'text')
     # , auth.signature
     )
+
+Stock_impresoras._after_insert.append(lambda row, id: code_generator(row, id))
 
 Stock_monitores = db.define_table('stock_monitores'
     , Field('identificador')

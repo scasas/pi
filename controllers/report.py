@@ -56,6 +56,9 @@
     
 #     return pdf
 
+# parque funcione en el servidor debe estar instalado el paquete xhtml2pdf
+# se lo instala con:
+# pip install xhtml2pdf
 
 import StringIO
 from os import path
