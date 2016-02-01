@@ -57,17 +57,16 @@ def _():
                 , (SPAN(I(_class='glyphicon glyphicon-edit'), ' UPS | Estabilizador'),False, URL('equipos', 'stock_ups_estabilizador'))
             ]
         ),
-        # (T(' Admin'), False, None,
-        #     [
-        #         (SPAN(I(_class='glyphicon glyphicon-edit'), ' Panel de Control'),False, URL('admin', 'panel_control'))
-        #         , (SPAN(I(_class='glyphicon glyphicon-edit'), ' Marcas'),False, URL('equipos', 'marcas'))
-        #         , (SPAN(I(_class='glyphicon glyphicon-edit'), ' Placa Madre'),False, URL('equipos', 'placa_madre'))
-        #         , (SPAN(I(_class='glyphicon glyphicon-edit'), ' Microprocesadores'),False, URL('equipos', 'microprocesadores'))
-        #         , (SPAN(I(_class='glyphicon glyphicon-edit'), ' Impresoras'),False, URL('equipos', 'impresoras'))
-        #         , (SPAN(I(_class='glyphicon glyphicon-edit'), ' Monitores'),False, URL('equipos', 'monitores'))
-        #         , (SPAN(I(_class='glyphicon glyphicon-edit'), ' UPS | Estabilizador'),False, URL('equipos', 'ups_estabilizador'))
-        #     ]
-        # ),
+        (T('Pedidos'), False, None,
+            [
+                (SPAN(I(_class='glyphicon glyphicon-edit'), ' ABM'),False, URL('pedidos', 'pedidos'))
+            ]
+        ),
+        (T('Reportes'), False, None,
+            [
+                (SPAN(I(_class='glyphicon glyphicon-edit'), ' Test'),False, URL('report', 'index.pdf'))
+            ]
+        ),
     ]
 
     # GRUPO ADMIN
@@ -80,11 +79,22 @@ def _():
                     , (SPAN(I(_class='glyphicon glyphicon-edit'), ' Placa Madre'),False, URL('equipos', 'placa_madre'))
                     , (SPAN(I(_class='glyphicon glyphicon-edit'), ' Microprocesadores'),False, URL('equipos', 'microprocesadores'))
                     , (SPAN(I(_class='glyphicon glyphicon-edit'), ' Impresoras'),False, URL('equipos', 'impresoras'))
+                    , (SPAN(I(_class='glyphicon glyphicon-edit'), ' Impresoras | Insumos'),False, URL('equipos', 'impresoras_insumos'))
                     , (SPAN(I(_class='glyphicon glyphicon-edit'), ' Monitores'),False, URL('equipos', 'monitores'))
                     , (SPAN(I(_class='glyphicon glyphicon-edit'), ' UPS | Estabilizador'),False, URL('equipos', 'ups_estabilizador'))
                 ]
             ),
         ]
+
+    response.menu += [
+        
+        (T('Ayuda'), False, None,
+            [
+                (SPAN(I(_class='glyphicon glyphicon-edit'), ' Acerca de PI'),False, URL('ayuda', 'acerca_de'))
+                , (SPAN(I(_class='glyphicon glyphicon-edit'), ' Referencia'),False, URL('ayuda', 'referencias'))
+            ]
+        ),
+    ]
 
 
 
