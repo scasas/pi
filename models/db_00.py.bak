@@ -1,2 +1,0 @@
-db = DAL('mysql://root:serdaca@localhost/pi', pool_size=1)
-install = True
