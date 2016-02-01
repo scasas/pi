@@ -1,5 +1,7 @@
 @auth.requires_login()
 def agentes():
+    titulo = 'Agentes'
+    response.view = 'load.html'
     # ABM & Consulta de los Agentes
     grid = SQLFORM.grid(Agentes
     	, fields=[
@@ -16,7 +18,7 @@ def agentes():
         , showbuttontext=False
         )
 
-    return dict(grid = grid)
+    return dict(form = grid, title=titulo)
 
 @auth.requires_login()
 def agente():
@@ -42,14 +44,15 @@ def agente():
 
 @auth.requires_login()
 def areas():
+    titulo = 'Agentes'
+    response.view = 'load.html'
     # ABM & consulta de las areas
     grid = SQLFORM.grid(Areas
         , links=[lambda r: area_equipos(r)]
         , csv=False
         , showbuttontext=False
         )
-
-    return dict(grid = grid)
+    return dict(form = grid,title=titulo)
 
 @auth.requires_login()
 def area():
