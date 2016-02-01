@@ -96,5 +96,8 @@ auth.settings.reset_password_requires_verification = True
 
 ## after defining tables, uncomment below to enable auditing
 # auth.enable_record_versioning(db)
+
 # Seteo el lenguaje por defecto a Español
-T.force('es')
+# T.force('es')
+# T.set_current_languages('es', 'es')
+T.set_current_languages('es-AR')
