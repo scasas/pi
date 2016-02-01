@@ -50,11 +50,27 @@ Pc = db.define_table('pc'
     , Field('memoria', requires=IS_IN_SET([0, 128, 256, 512, 1024, 2048, 4096, 8192]))
     , Field('so', requires=IS_IN_SET(['Windows XP', 'Windows Vista', 'Windows 7', 'Windows 8', 'Windows 10', 'Linux', 'Windows | Linux']))
     , Field('unidad_optica', requires=IS_IN_SET(['No Posee', 'CD-R', 'CD-RW', 'DVD-R', 'DVD-RW']))
-    , Field('propiedad', requires=IS_IN_SET(['Particular', 'Vivienda']))
     , Field('observaciones', 'text')
     , Field('area_id', Areas)
     , Field('responsable_id', Agentes)
     # , auth.signature
     )
 
-db.pc.propiedad.default='Vivienda'
+# PORTATILES ----------------------------------------------------------------------
+Portatiles = db.define_table('portatiles'
+    , Field('personal_id', Agentes)
+    , Field('area_id', Areas)
+    , Field('marca_id', Marcas)
+    , Field('modelo')
+    , Field('microprocesador_id', Microprocesadores)
+    , Field('disco', requires=IS_IN_SET([40, 80, 160, 300, 500, 640, 1024, 2048]))
+    , Field('memoria', requires=IS_IN_SET([128, 256, 512, 1024, 2048, 4096]))
+    , Field('tipo', requires=IS_IN_SET(['Notebook', 'All in One']))
+    , Field('pulgadas', requires=IS_IN_SET(['15','17','19','23']))
+    , Field('unidad_optica', requires=IS_IN_SET(['No Posee', 'CD-R', 'CD-RW', 'DVD-R', 'DVD-RW']))
+    , Field('so', requires=IS_IN_SET(['Windows XP', 'Windows Vista', 'Windows 7', 'Windows 8', 'Linux', 'Windows | Linux']))
+    , Field('propietario', requires=IS_IN_SET(['Vivienda', 'Particular | Personal']))
+    # , auth.signature
+    )
+
+db.portatiles.propiedad.default='Vivienda'
