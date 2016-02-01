@@ -66,6 +66,11 @@ def pc():
         , madre_modal=modal2.formModal()
         )
 
+@auth.requires_login()
+def portatiles():
+    grid = SQLFORM.grid(Portatiles, csv=False, showbuttontext=False)
+    return dict(grid = grid)
+
 ## IMPRESORAS ------------------------------------------------------------------
 @auth.requires_login()
 def impresoras():
@@ -108,7 +113,8 @@ def stock_monitores():
     grid = SQLFORM.grid(
         Stock_monitores
         , fields = [
-            Stock_monitores.monitor_id
+            Stock_monitores.identificador
+            , Stock_monitores.monitor_id
             , Stock_monitores.responsable_id
             , Stock_monitores.area_id
             , Stock_monitores.estado
@@ -128,5 +134,14 @@ def ups_estabilizador():
 
 @auth.requires_login()
 def stock_ups_estabilizador():
-    grid = SQLFORM.grid(Stock_ups_estabilizador, csv=False)
+    grid = SQLFORM.grid(Stock_ups_estabilizador
+        , fields = [
+            Stock_ups_estabilizador.ups_estabilizador_id
+            , Stock_ups_estabilizador.responsable_id
+            , Stock_ups_estabilizador.area_id
+            , Stock_ups_estabilizador.estado
+        ]
+        , csv=False
+        , showbuttontext=False
+        )
     return dict(grid = grid)

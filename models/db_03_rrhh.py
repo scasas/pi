@@ -16,5 +16,5 @@ Agentes = db.define_table('agentes'
     , Field('area_id', Areas)
     , auth.signature
     , format='%(apellido)s %(nombres)s'
-    , migrate=True
+    # , migrate=True
     )

@@ -40,7 +40,7 @@ Monitores = db.define_table('tab_monitores'
     , Field('marca_id', Marcas)
     , Field('modelo')
     , Field('pulgadas'
-        , requires=IS_IN_SET(['15','17','19','23'])
+        , requires=IS_IN_SET(tab_pulgadas)
         )
     , Field('tipo'
         , requires=IS_IN_SET(['CRT','LCD','LED','PLASMA'])
@@ -57,7 +57,7 @@ Ups_estabilizador = db.define_table('tab_ups_estabilizador'
     , Field('modelo')
     , Field('tipo', requires=IS_IN_SET(['UPS','ESTABILIZADOR']))
     , Field('potencia', requires=IS_IN_SET(['500', '650', '800', '1000' ]))
-    , Field('autonomia', 'boolean', default=True)
+    # , Field('autonomia', 'boolean', default=True)
     , format=lambda r: r.marca_id.nombre + ' ' + r.modelo + ' ' + r.tipo or ' '
     )
 
