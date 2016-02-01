@@ -51,6 +51,7 @@ def _():
         (T('Equipos'), False, None,
             [
                 (SPAN(I(_class='glyphicon glyphicon-edit'), ' PC'),False, URL('equipos', 'pc'))
+                , (SPAN(I(_class='glyphicon glyphicon-edit'), ' Portatiles'),False, URL('equipos', 'portatiles'))
                 , (SPAN(I(_class='glyphicon glyphicon-edit'), ' Impresoras'),False, URL('equipos', 'stock_impresoras'))
                 , (SPAN(I(_class='glyphicon glyphicon-edit'), ' Monitores'),False, URL('equipos', 'stock_monitores'))
                 , (SPAN(I(_class='glyphicon glyphicon-edit'), ' UPS | Estabilizador'),False, URL('equipos', 'stock_ups_estabilizador'))

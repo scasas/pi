@@ -3,7 +3,7 @@
 # # Agentes
 Agentes.area_id.label = 'Area'
 
-# # PC
+# PC
 Pc.responsable_id.label = 'Responsable'
 Pc.area_id.label = 'Area'
 Pc.microprocesador_id.label = 'Microprocesador'
@@ -11,6 +11,16 @@ Pc.placa_madre_id.label = 'Placa Madre'
 Pc.disco.label = 'Capacidad de Disco (GB)'
 Pc.memoria.label = 'Capacidad de Memoria (Mb)'
 Pc.so.label = 'Sistema Operativo'
+
+# Portatiles
+Portatiles.responsable_id.label = 'Responsable'
+Portatiles.area_id.label = 'Area'
+Portatiles.marca_id.label = 'Marca'
+Portatiles.microprocesador_id.label = 'Microprocesador'
+Portatiles.disco.label = 'Capacidad de Disco (GB)'
+Portatiles.memoria.label = 'Capacidad de Memoria (Mb)'
+Portatiles.tipo.label = 'Tipo de Portatil'
+Portatiles.so.label = 'Sistema Operativo'
 
 # Monitores
 Stock_monitores.monitor_id.label = 'Monitor'
@@ -43,6 +53,11 @@ Stock_impresoras.area_id.label = 'Area'
 Pc.microprocesador_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Microprocesadores.id, lambda r: r.marca_id.nombre + ' ' + r.modelo + ' ' + r.frecuencia_trabajo + ' Ghz', orderby = Microprocesadores.marca_id | Microprocesadores.modelo ))
 Pc.placa_madre_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Placa_madre.id,  lambda r: r.marca_id.nombre + ' ' + r.modelo, orderby = Placa_madre.marca_id | Placa_madre.modelo))
 Pc.responsable_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Agentes.id,  lambda r: r.apellido.upper() + ' ' + r.nombres.upper(), orderby = Agentes.apellido | Agentes.nombres))
+
+# Portatiles
+Portatiles.responsable_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Agentes.id,  lambda r: r.apellido.upper() + ' ' + r.nombres.upper(), orderby = Agentes.apellido | Agentes.nombres))
+Portatiles.microprocesador_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Microprocesadores.id, lambda r: r.marca_id.nombre + ' ' + r.modelo + ' ' + r.frecuencia_trabajo + ' Ghz', orderby = Microprocesadores.marca_id | Microprocesadores.modelo ))
+
 
 # Placa Madre ------------------------------------------------------------------
 Placa_madre.marca_id.requires = IS_IN_DB(db(db.tab_marcas.placa_madre == True), Marcas.id, '%(nombre)s')

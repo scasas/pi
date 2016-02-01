@@ -66,6 +66,13 @@ def pc():
         , madre_modal=modal2.formModal()
         )
 
+@auth.requires_login()
+def portatiles():
+    # titulo = 'Portatiles'
+    # response.view = 'equipos/dispositivos.html'
+    grid = SQLFORM.grid(Portatiles, csv=False, showbuttontext=False)
+    return dict(grid = grid)#, titulo = titulo)
+
 ## IMPRESORAS ------------------------------------------------------------------
 @auth.requires_login()
 def impresoras():
