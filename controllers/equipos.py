@@ -68,10 +68,8 @@ def pc():
 
 @auth.requires_login()
 def portatiles():
-    # titulo = 'Portatiles'
-    # response.view = 'equipos/dispositivos.html'
     grid = SQLFORM.grid(Portatiles, csv=False, showbuttontext=False)
-    return dict(grid = grid)#, titulo = titulo)
+    return dict(grid = grid)
 
 ## IMPRESORAS ------------------------------------------------------------------
 @auth.requires_login()
@@ -135,5 +133,14 @@ def ups_estabilizador():
 
 @auth.requires_login()
 def stock_ups_estabilizador():
-    grid = SQLFORM.grid(Stock_ups_estabilizador, csv=False)
+    grid = SQLFORM.grid(Stock_ups_estabilizador
+        , fields = [
+            Stock_ups_estabilizador.ups_estabilizador_id
+            , Stock_ups_estabilizador.responsable_id
+            , Stock_ups_estabilizador.area_id
+            , Stock_ups_estabilizador.estado
+        ]
+        , csv=False
+        , showbuttontext=False
+        )
     return dict(grid = grid)
