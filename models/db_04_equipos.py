@@ -8,7 +8,7 @@ Stock_impresoras = db.define_table('stock_impresoras'
     , Field('impresora_id', Impresoras)
     , Field('responsable_id', Agentes)
     , Field('area_id', Areas)
-    , Field('estado', requires=IS_IN_SET(['BUENO', 'REGULAR', 'MALO']))
+    , Field('estado', requires=IS_IN_SET(['BUENO', 'REGULAR', 'MALO'], error_message='Debes seleccionar el estado de la impresora'))
     , Field('nro_serie')
     , Field('fecha_compra', 'date')
     , Field('observaciones', 'text')
@@ -56,3 +56,5 @@ Pc = db.define_table('pc'
     , Field('responsable_id', Agentes)
     # , auth.signature
     )
+
+db.pc.propiedad.default='Vivienda'

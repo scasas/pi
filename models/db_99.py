@@ -58,7 +58,7 @@ Stock_monitores.monitor_id.requires = IS_IN_DB(db, Monitores.id,  lambda r: r.ma
 # Impresoras
 Impresoras.marca_id.requires = IS_IN_DB(db(db.tab_marcas.impresora == True), Marcas.id, '%(nombre)s')
 Stock_impresoras.responsable_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Agentes.id,  lambda r: r.apellido.upper() + ' ' + r.nombres.upper(), orderby = Agentes.apellido | Agentes.nombres))
-Stock_impresoras.impresora_id.requires = IS_IN_DB(db, Impresoras.id,  lambda r: r.marca_id.nombre.upper() + ' ' + r.modelo.upper(), orderby =~ Impresoras.marca_id | Impresoras.modelo)
+Stock_impresoras.impresora_id.requires = IS_IN_DB(db, Impresoras.id,  lambda r: r.marca_id.nombre.upper() + ' ' + r.modelo.upper(), orderby =~ Impresoras.marca_id | Impresoras.modelo, error_message='Debes seleccionar una impresora')
 
 # UPS | Estabilizadore
 Ups_estabilizador.marca_id.requires = IS_IN_DB(db(db.tab_marcas.ups_estabilizador == True), Marcas.id, '%(nombre)s')
