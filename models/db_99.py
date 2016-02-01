@@ -33,18 +33,19 @@ Stock_impresoras.responsable_id.label = 'Responsable'
 Stock_impresoras.area_id.label = 'Area'
 
 # # UPS | Estabilizador
-# Stock_ups_estabilizador.ups_estabilizador_id.label = 'Dispositivo'
-# Stock_ups_estabilizador.responsable_id.label = 'Responsable'
-# Stock_ups_estabilizador.area_id.label = 'Area'
+Stock_ups_estabilizador.ups_estabilizador_id.label = 'Dispositivo'
+Stock_ups_estabilizador.responsable_id.label = 'Responsable'
+Stock_ups_estabilizador.area_id.label = 'Area'
 
 
 # # Pedidos
-# Pedidos.problema_tipo.label = 'Tipo de Problema'
-# Pedidos.problema_detalle.label = 'Detalle del Problema'
-# Pedidos.problema_solucion_propuesta.label = 'Solucion Propuesta'
-# Pedidos.problema_estado.label = 'Estado'
-# Pedidos.fecha_solicitud.label = 'Fecha'
-# Pedidos.personal_id.label = 'Personal'
+Pedidos.problema_tipo.label = 'Tipo de Problema'
+Pedidos.problema_detalle.label = 'Detalle del Problema'
+Pedidos.problema_solucion_propuesta.label = 'Solucion Propuesta'
+Pedidos.problema_estado.label = 'Estado'
+Pedidos.fecha_solicitud.label = 'Fecha'
+Pedidos.personal_id.label = 'Personal'
+Pedidos.personal_computos_id.label = 'Personal de Computos'
 
 
 # REQUIRES ---------------------------------------------------------------------
@@ -57,7 +58,6 @@ Pc.responsable_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Agentes.id,  lambda r: r.a
 # Portatiles
 Portatiles.responsable_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Agentes.id,  lambda r: r.apellido.upper() + ' ' + r.nombres.upper(), orderby = Agentes.apellido | Agentes.nombres))
 Portatiles.microprocesador_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Microprocesadores.id, lambda r: r.marca_id.nombre + ' ' + r.modelo + ' ' + r.frecuencia_trabajo + ' Ghz', orderby = Microprocesadores.marca_id | Microprocesadores.modelo ))
-
 
 # Placa Madre ------------------------------------------------------------------
 Placa_madre.marca_id.requires = IS_IN_DB(db(db.tab_marcas.placa_madre == True), Marcas.id, '%(nombre)s')
@@ -75,8 +75,13 @@ Impresoras.marca_id.requires = IS_IN_DB(db(db.tab_marcas.impresora == True), Mar
 Stock_impresoras.responsable_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Agentes.id,  lambda r: r.apellido.upper() + ' ' + r.nombres.upper(), orderby = Agentes.apellido | Agentes.nombres))
 Stock_impresoras.impresora_id.requires = IS_IN_DB(db, Impresoras.id,  lambda r: r.marca_id.nombre.upper() + ' ' + r.modelo.upper(), orderby =~ Impresoras.marca_id | Impresoras.modelo, error_message='Debes seleccionar una impresora')
 
-# UPS | Estabilizadore
+# UPS | Estabilizador
 Ups_estabilizador.marca_id.requires = IS_IN_DB(db(db.tab_marcas.ups_estabilizador == True), Marcas.id, '%(nombre)s')
+Stock_ups_estabilizador.responsable_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Agentes.id,  lambda r: r.apellido.upper() + ' ' + r.nombres.upper(), orderby = Agentes.apellido | Agentes.nombres))
+
+# Pedidos
+Pedidos.personal_id.requires = IS_IN_DB(db, Agentes.id,  lambda r: r.apellido.upper() + ' ' + r.nombres.upper(), orderby = Agentes.apellido | Agentes.nombres)
+Pedidos.personal_computos_id.requires = IS_IN_DB(db(db.agentes.area_id == 15), Agentes.id, lambda r: r.apellido.upper() + ' ' + r.nombres.upper(), orderby = Agentes.apellido | Agentes.nombres)
 
 
 
