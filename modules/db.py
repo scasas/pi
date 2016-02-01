@@ -21,13 +21,13 @@ db = MySQLdb.connect(
 cur = db.cursor()
 
 # Use all the SQL you like
-cur.execute("SELECT id, identificador FROM stock_impresoras")
+cur.execute("SELECT id, identificador FROM stock_monitores")
 
 for row in cur.fetchall() :
 
-    aux = 'IMP-' + str(100+row['id'])
+    aux = 'MON-' + str(100+row['id'])
     
-    query = "UPDATE stock_impresoras SET identificador = '%s' WHERE id=%i" %(aux, row['id'])
+    query = "UPDATE stock_monitores SET identificador = '%s' WHERE id=%i" %(aux, row['id'])
     cur.execute(query)
     # ejecuto un commit
     db.commit()
