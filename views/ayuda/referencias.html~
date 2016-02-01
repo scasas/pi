@@ -1,8 +1,6 @@
 {{extend 'layout.html'}}
 <h3>Referencias</h3>
 
-Esto hay que terminarlo
-
 <h5>Estados </h5>
 
 <ul>
