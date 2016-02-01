@@ -113,7 +113,8 @@ def stock_monitores():
     grid = SQLFORM.grid(
         Stock_monitores
         , fields = [
-            Stock_monitores.monitor_id
+            Stock_monitores.identificador
+            , Stock_monitores.monitor_id
             , Stock_monitores.responsable_id
             , Stock_monitores.area_id
             , Stock_monitores.estado
