@@ -146,15 +146,15 @@
             <table class="table table-bordered">
                 <tr>
                     <th>Marca | Modelo</th>
-                    <th>Nro Serie</th>
-                    <th>Fecha Compra</th>
+                    <th>Caracteristicas</th>
+                    <th>Responsable</th>
                     <th>Observaciones</th>
                 </tr>
                 {{for reg in usr_portatiles:}}
                     <tr>
-                        <td>{{=reg.monitor_id.marca_id.nombre}} - {{=reg.monitor_id.modelo}}</td>
-                        <td>{{=reg.nro_serie}}</td>
-                        <td>{{=reg.fecha_compra}}</td>
+                        <td>{{=reg.tipo}}: {{=reg.marca_id.nombre}} {{=reg.modelo}}</td>
+                        <td>{{=reg.microprocesador_id.marca_id.nombre}} {{=reg.microprocesador_id.modelo}} | Ram: {{=reg.memoria}} MB | HD: {{=reg.disco}} GB | {{=reg.pulgadas}}" |UO: {{=reg.unidad_optica}} | SO: {{=reg.so}}</td>
+                        <td>{{=reg.responsable_id}}</td>
                         <td>{{=reg.observaciones}}</td>
                     </tr>
                 {{pass}}

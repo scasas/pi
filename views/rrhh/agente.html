@@ -2,14 +2,6 @@
 
 <i>Agente:</i>
 
-{{
-    usr_pc = agente['pc']
-    usr_portatiles = agente['portatiles']
-    usr_monitores = agente['monitores']
-    usr_impresoras = agente['impresoras']
-    usr_ups_estabilizador = agente['ups_estabilizador']
-}}
-
 <h3 class="title">
     <strong>{{=agente['datos']['apellido']}}, {{=agente['datos']['nombres']}}</strong>
 </h3>
@@ -37,7 +29,6 @@
 
 <br/><br/>
 
-
 <table class="table table-bordered span6">
     <tr>
         <th></th>
@@ -48,35 +39,37 @@
             Descripción
         </th>
     </tr>
-    {{for reg in usr_pc:}}
-        <tr>
-            <th>{{=IMG(_src=URL('static','images/dispositivos/server.png') )}}</th>
-            <td>{{=reg.id}}</td>
-            <td>
+    {{if len(agente["pc"])>0:}}
+        {{for reg in agente["pc"]:}}
+            <tr>
+                <th>{{=IMG(_src=URL('static','images/dispositivos/server.png') )}}</th>
+                <td>{{=reg.id}}</td>
+                <td>
 
-                <br/>{{=IMG(_src=URL('static','images/dispositivos/cpu.png') )}}
-                {{=reg.microprocesador_id.marca_id.nombre}} {{=reg.microprocesador_id.modelo}}
+                    <br/>{{=IMG(_src=URL('static','images/dispositivos/cpu.png') )}}
+                    {{=reg.microprocesador_id.marca_id.nombre}} {{=reg.microprocesador_id.modelo}}
 
-                <br/>{{=IMG(_src=URL('static','images/dispositivos/motherboard.png') )}}
-                {{=reg.placa_madre_id.marca_id.nombre}} {{=reg.placa_madre_id.modelo}}
-                
-                <br/>{{=IMG(_src=URL('static','images/dispositivos/hd.png') )}}
-                {{=reg.disco}} GB
+                    <br/>{{=IMG(_src=URL('static','images/dispositivos/motherboard.png') )}}
+                    {{=reg.placa_madre_id.marca_id.nombre or 'EMPTY '}} {{=reg.placa_madre_id.modelo or ' EMPTY '}}
+                    
+                    <br/>{{=IMG(_src=URL('static','images/dispositivos/hd.png') )}}
+                    {{=reg.disco}} GB
 
-                <br/>{{=IMG(_src=URL('static','images/dispositivos/memoria1.png') )}}
-                {{=reg.memoria}} MB
+                    <br/>{{=IMG(_src=URL('static','images/dispositivos/memoria1.png') )}}
+                    {{=reg.memoria}} MB
 
-                <br/>{{=IMG(_src=URL('static','images/dispositivos/system.png') )}}
-                {{=reg.so}}
+                    <br/>{{=IMG(_src=URL('static','images/dispositivos/system.png') )}}
+                    {{=reg.so}}
 
-                <br/>{{=IMG(_src=URL('static','images/dispositivos/drive_optical.png') )}}
-                
-            </td>
-        </tr>
+                    <br/>{{=IMG(_src=URL('static','images/dispositivos/drive_optical.png') )}}
+                    
+                </td>
+            </tr>
+        {{pass}}
     {{pass}}
-
-
-    {{for reg in usr_portatiles:}}
+    
+    {{if len(agente["portatiles"]) >0:}}
+        {{for reg in agente["portatiles"]:}}
             <tr>
                 <th>{{=IMG(_src=URL('static','images/dispositivos/notebook.png') )}}</th>
                 <td>{{=reg.id}}</td>
@@ -100,12 +93,11 @@
                     
                 </td>
             </tr>
+        {{pass}}
     {{pass}}
 
-
-    {{
-    if len(usr_monitores)>0:
-        for reg in usr_monitores:}}
+    {{if len(agente["monitores"])>0:}}
+        {{for reg in agente["monitores"]:}}
             <tr>
                 <th>{{=IMG(_src=URL('static','images/dispositivos/monitor.png') )}}</th>
                 <td>{{=reg.id}}</td>
@@ -115,12 +107,12 @@
                     {{=reg.fecha_compra}}
                 </td>
             </tr>
-        {{
-        pass
-    pass
-    }}
+        {{pass}}
+    {{pass}}
+    
 
-    {{for reg in usr_impresoras:}}
+    {{if len(agente["impresoras"])>0:}}
+        {{{for reg in agente["impresoras"]:}}
         <tr>
             <th>{{=IMG(_src=URL('static','images/dispositivos/print.png') )}}</th>
             <td>{{=reg.id}}</td>
@@ -131,8 +123,11 @@
                 {{=reg.observaciones}}
             </td>
         </tr>
+        {{pass}}
     {{pass}}
-    {{for reg in usr_ups_estabilizador:}}
+
+    {{if len(agente["ups_estabilizador"])>0:}}
+        {{for reg in agente["ups_estabilizador"]:}}
         <tr>
             <th>{{=IMG(_src=URL('static','images/dispositivos/status.png') )}}</th>
             <td>{{=reg.id}}</td>
@@ -143,14 +138,9 @@
                 {{=reg.observaciones}}
             </td>
         </tr>
+        {{pass}}
     {{pass}}
 </table>
-
-
-{{BEAUTIFY(agente)}}
-
-{{response.toolbar()}}
-
 
 <style type='text/css'>
     .title{
