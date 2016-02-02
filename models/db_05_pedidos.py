@@ -1,5 +1,6 @@
 # PEDIDOS ----------------------------------------------------------------------
 Pedidos = db.define_table('pedidos'
+    , Field('identificador')
     , Field('personal_id', Agentes)
     # , Field('dispositivo', requires=IS_IN_SET(['pc', 'monitor', 'notebook', 'impresora', 'UPS | Estabilizador', 'celular', 'ninguno de los anteriores']))
     , Field('fecha_solicitud', 'date', notnull=True, default=request.now)

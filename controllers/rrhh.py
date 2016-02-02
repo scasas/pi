@@ -35,7 +35,7 @@ def agente():
     agente['monitores'] = db(db.stock_monitores.responsable_id == request.vars.id ).select()
     agente['impresoras'] = db(db.stock_impresoras.responsable_id == request.vars.id ).select()
     agente['ups_estabilizador'] = db(db.stock_ups_estabilizador.responsable_id == request.vars.id ).select()
-    agente['portatiles'] = {}
+    agente['portatiles'] = db(db.portatiles.responsable_id == request.vars.id ).select()
 
     # grid = SQLFORM.grid(Agentes, csv=False, showbuttontext=False)
 
