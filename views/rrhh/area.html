@@ -69,6 +69,7 @@
         <div class="tab-pane active" id="tab_pc">
             <table class="table table-bordered span6">
                 <tr>
+                    <th></th>
                     <th class="span2">PLaca Madre</th>
                     <th class="span2">Micro</th>
                     <th class="span1">Memoria RAM</th>
@@ -76,6 +77,7 @@
                 </tr>
                 {{for reg in usr_pc:}}
                     <tr>
+                        <td>{{=reg.identificador}}</td>
                         <td>{{=reg.placa_madre_id.marca_id.nombre}} - {{=reg.placa_madre_id.modelo}}</td>
                         <td>{{=reg.microprocesador_id.marca_id.nombre}} - {{=reg.microprocesador_id.modelo}}</td>
                         <td>{{=reg.memoria}} Mb</td>
@@ -88,16 +90,16 @@
         <div class="tab-pane" id="tab_impresoras">
             <table class="table table-bordered">
                 <tr>
+                    <th></th>
                     <th>Marca | Modelo</th>
-                    <th>Nro Serie</th>
-                    <th>Fecha Compra</th>
+                    <th>Responsable</th>
                     <th>Observaciones</th>
                 </tr>
                 {{for reg in usr_impresoras:}}
                     <tr>
+                        <td>{{=reg.identificador}}</td>
                         <td>{{=reg.impresora_id.marca_id.nombre}} - {{=reg.impresora_id.modelo}}</td>
-                        <td>{{=reg.nro_serie}}</td>
-                        <td>{{=reg.fecha_compra}}</td>
+                        <td>{{=reg.responsable_id.apellido}}, {{=reg.responsable_id.nombres}}</td>
                         <td>{{=reg.observaciones}}</td>
                     </tr>
                 {{pass}}
@@ -107,16 +109,23 @@
         <div class="tab-pane" id="tab_monitores">
             <table class="table table-bordered">
                 <tr>
+                    <th></th>
                     <th>Marca | Modelo</th>
-                    <th>Nro Serie</th>
-                    <th>Fecha Compra</th>
+                    <th>Responsable</th>
                     <th>Observaciones</th>
                 </tr>
-                {{for reg in usr_monitores:}}
+                    {{for reg in usr_monitores:}}
+                    {{
+                    if (reg.responsable_id > 0):
+                        auxiliar = str(reg.responsable_id.apellido) + ', ' + str(reg.responsable_id.nombres)
+                    else:
+                        auxiliar = ''
+                    pass
+                    }}
                     <tr>
+                        <td>{{=reg.identificador}}</td>
                         <td>{{=reg.monitor_id.marca_id.nombre}} - {{=reg.monitor_id.modelo}}</td>
-                        <td>{{=reg.nro_serie}}</td>
-                        <td>{{=reg.fecha_compra}}</td>
+                        <td>{{=auxiliar}}</td>
                         <td>{{=reg.observaciones}}</td>
                     </tr>
                 {{pass}}
@@ -126,16 +135,23 @@
         <div class="tab-pane" id="tab_ups_estabilizadores">
             <table class="table table-bordered">
                 <tr>
+                    <th></th>
                     <th>Marca | Modelo</th>
-                    <th>Nro Serie</th>
-                    <th>Fecha Compra</th>
+                    <th>Responsable</th>
                     <th>Observaciones</th>
                 </tr>
-                {{for reg in usr_ups_estabilizador:}}
+                    {{for reg in usr_ups_estabilizador:}}
+                    {{
+                    if (reg.responsable_id > 0):
+                        auxiliar = str(reg.responsable_id.apellido) + ', ' + str(reg.responsable_id.nombres)
+                    else:
+                        auxiliar = ''
+                    pass
+                    }}
                     <tr>
+                        <td>{{=reg.identificador}}</td>
                         <td>{{=reg.ups_estabilizador_id.marca_id.nombre}} - {{=reg.ups_estabilizador_id.modelo}}</td>
-                        <td>{{=reg.nro_serie}}</td>
-                        <td>{{=reg.fecha_compra}}</td>
+                        <td>{{=auxiliar}}</td>
                         <td>{{=reg.observaciones}}</td>
                     </tr>
                 {{pass}}
@@ -145,6 +161,7 @@
         <div class="tab-pane" id="tab_portatiles">
             <table class="table table-bordered">
                 <tr>
+                    <th></th>
                     <th>Marca | Modelo</th>
                     <th>Caracteristicas</th>
                     <th>Responsable</th>
@@ -152,8 +169,9 @@
                 </tr>
                 {{for reg in usr_portatiles:}}
                     <tr>
+                        <td>{{=reg.identificador}}</td>
                         <td>{{=reg.tipo}}: {{=reg.marca_id.nombre}} {{=reg.modelo}}</td>
-                        <td>{{=reg.microprocesador_id.marca_id.nombre}} {{=reg.microprocesador_id.modelo}} | Ram: {{=reg.memoria}} MB | HD: {{=reg.disco}} GB | {{=reg.pulgadas}}" |UO: {{=reg.unidad_optica}} | SO: {{=reg.so}}</td>
+                        <td>{{=reg.microprocesador_id.marca_id.nombre}} {{=reg.microprocesador_id.modelo}} | Ram: {{=reg.memoria}} MB | HD: {{=reg.disco}} GB | {{=reg.pulgadas}}" | UO: {{=reg.unidad_optica}} | SO: {{=reg.so}}</td>
                         <td>{{=reg.responsable_id}}</td>
                         <td>{{=reg.observaciones}}</td>
                     </tr>

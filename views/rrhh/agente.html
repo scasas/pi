@@ -29,13 +29,14 @@
 
 <br/><br/>
 
-<table class="table table-bordered span6">
+<div class="col-lg-8">
+<table class="table table-bordered">
     <tr>
-        <th></th>
-        <th>
-            ID
+        <th class="col-lg-1"></th>
+        <th class="col-lg-1">
+            Identificador
         </th>
-        <th>
+        <th class="col-lg-6">
             Descripción
         </th>
     </tr>
@@ -43,7 +44,7 @@
         {{for reg in agente["pc"]:}}
             <tr>
                 <th>{{=IMG(_src=URL('static','images/dispositivos/server.png') )}}</th>
-                <td>{{=reg.id}}</td>
+                <td>{{=reg.identificador}}</td>
                 <td>
 
                     <br/>{{=IMG(_src=URL('static','images/dispositivos/cpu.png') )}}
@@ -71,10 +72,10 @@
     {{if len(agente["portatiles"]) >0:}}
         {{for reg in agente["portatiles"]:}}
             <tr>
-                <th>{{=IMG(_src=URL('static','images/dispositivos/notebook.png') )}}</th>
-                <td>{{=reg.id}}</td>
+                <th>{{=IMG(_src=URL('static','images/dispositivos/notebook.png') ) }}</th>
+                <td>{{=reg.identificador}}</td>
                 <td>
-                    {{=reg.modelo}}
+                    <strong>{{=reg.marca_id.nombre.upper()}} {{=reg.modelo.upper()}}</strong>
 
                     <br/>{{=IMG(_src=URL('static','images/dispositivos/cpu.png') )}}
                     {{=reg.microprocesador_id.marca_id.nombre}} {{=reg.microprocesador_id.modelo}}
@@ -100,7 +101,7 @@
         {{for reg in agente["monitores"]:}}
             <tr>
                 <th>{{=IMG(_src=URL('static','images/dispositivos/monitor.png') )}}</th>
-                <td>{{=reg.id}}</td>
+                <td>{{=reg.identificador}}</td>
                 <td>
                     {{=reg.monitor_id.marca_id.nombre}} {{=reg.monitor_id.modelo}}
                     {{=reg.nro_serie}}
@@ -112,10 +113,10 @@
     
 
     {{if len(agente["impresoras"])>0:}}
-        {{{for reg in agente["impresoras"]:}}
+        {{for reg in agente["impresoras"]:}}
         <tr>
             <th>{{=IMG(_src=URL('static','images/dispositivos/print.png') )}}</th>
-            <td>{{=reg.id}}</td>
+            <td>{{=reg.identificador}}</td>
             <td>
                 {{=reg.impresora_id.marca_id.nombre}} {{=reg.impresora_id.modelo}}
                 {{=reg.nro_serie}}
@@ -130,7 +131,7 @@
         {{for reg in agente["ups_estabilizador"]:}}
         <tr>
             <th>{{=IMG(_src=URL('static','images/dispositivos/status.png') )}}</th>
-            <td>{{=reg.id}}</td>
+            <td>{{=reg.identificador}}</td>
             <td>
                 {{=reg.ups_estabilizador_id.marca_id.nombre}} {{=reg.ups_estabilizador_id.modelo}}
                 {{=reg.nro_serie}}
@@ -141,6 +142,7 @@
         {{pass}}
     {{pass}}
 </table>
+</div>
 
 <style type='text/css'>
     .title{

@@ -56,6 +56,7 @@ Pc = db.define_table('pc'
 
 # PORTATILES ----------------------------------------------------------------------
 Portatiles = db.define_table('portatiles'
+    , Field('identificador')
     , Field('responsable_id', Agentes)
     , Field('area_id', Areas)
     , Field('tipo', requires=IS_IN_SET(['Notebook', 'All in One']))

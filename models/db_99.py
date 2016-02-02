@@ -93,4 +93,4 @@ Stock_impresoras.id.readable = True
 
 
 # REPRESENT ---------------------------------------------------------------------
-Stock_ups_estabilizador.ups_estabilizador_id.represent = lambda r: r.marca_id.nombre.upper() + ' ' + r.modelo.upper()
+# Stock_ups_estabilizador.ups_estabilizador_id.represent = lambda r, id: r.marca_id.nombre.upper() + ' ' + r.modelo.upper()
