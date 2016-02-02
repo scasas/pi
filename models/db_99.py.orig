@@ -89,8 +89,12 @@ Pedidos.personal_computos_id.requires = IS_IN_DB(db(db.agentes.area_id == 15), A
 Stock_impresoras.identificador.writable = False
 
 # Readable ---------------------------------------------------------------------
+<<<<<<< HEAD
 Stock_impresoras.id.readable = True
 
 
 # REPRESENT ---------------------------------------------------------------------
 Stock_ups_estabilizador.ups_estabilizador_id.represent = lambda r: r.marca_id.nombre.upper() + ' ' + r.modelo.upper()
+=======
+Stock_impresoras.id.readable = True
+>>>>>>> 20ba88cf5aaeb3e13e6aa0de6a3bfde2157be5df

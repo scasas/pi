@@ -341,9 +341,13 @@
 'PCs': 'PCs',
 'Pedidos': 'Pedidos',
 'Peeking at file': 'Visualizando archivo',
+<<<<<<< HEAD
 'Personal': 'Personal',
 'Personal Computos Id': 'Personal Computos Id',
 'Personal de Computos': 'Personal de Computos',
+=======
+'Personal Computos Id': 'Personal Computos Id',
+>>>>>>> 20ba88cf5aaeb3e13e6aa0de6a3bfde2157be5df
 'Personal Id': 'Personal Id',
 'Phone': 'Teléfono',
 'PI': 'PI',
@@ -364,7 +368,10 @@
 'Profile': 'Perfil',
 'Profile updated': 'Perfil actualizado',
 'Propiedad': 'Propiedad',
+<<<<<<< HEAD
 'Propietario': 'Propietario',
+=======
+>>>>>>> 20ba88cf5aaeb3e13e6aa0de6a3bfde2157be5df
 'Pulgadas': 'Pulgadas',
 'pygraphviz library not found': 'pygraphviz library not found',
 'Python': 'Python',
@@ -390,7 +397,10 @@
 'Remember me (for 30 days)': 'Recuérdame (durante 30 días)',
 'remove compiled': 'eliminar compiladas',
 'Reparar': 'Reparar',
+<<<<<<< HEAD
 'Reportes': 'Reportes',
+=======
+>>>>>>> 20ba88cf5aaeb3e13e6aa0de6a3bfde2157be5df
 'Request reset password': 'Solicitar reinicio de contraseña',
 'Reset password': 'Reiniciar contraseña',
 'Reset Password key': 'Restaurar Llave de la Contraseña',

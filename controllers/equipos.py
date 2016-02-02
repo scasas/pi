@@ -121,6 +121,7 @@ def stock_monitores():
         ]
         , csv=False
         , showbuttontext=False
+        , maxtextlength=30
         )
     return dict(grid = grid)
 
