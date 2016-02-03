@@ -44,7 +44,7 @@ def agente():
 
 @auth.requires_login()
 def areas():
-    titulo = 'Agentes'
+    titulo = 'Areas'
     response.view = 'load.html'
     # ABM & consulta de las areas
     grid = SQLFORM.grid(Areas
