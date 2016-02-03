@@ -97,10 +97,11 @@
                     <th>Observaciones</th>
                 </tr>
                 {{for reg in usr_impresoras:}}
+                {{auxiliar = control_reponsable_id(reg)}}
                     <tr>
                         <td>{{=reg.identificador}}</td>
                         <td>{{=reg.impresora_id.marca_id.nombre}} - {{=reg.impresora_id.modelo}}</td>
-                        <td>{{=reg.responsable_id.apellido}}, {{=reg.responsable_id.nombres}}</td>
+                        <td>{{=auxiliar}}</td>
                         <td>{{=reg.observaciones}}</td>
                     </tr>
                 {{pass}}
