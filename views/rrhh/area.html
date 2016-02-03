@@ -75,14 +75,19 @@
                     <th class="span2">Micro</th>
                     <th class="span1">Memoria RAM</th>
                     <th class="span1">Disco Rígido</th>
+                    <th class="span1">Responsable</th>
+                    <th class="span1">Observaciones</th>
                 </tr>
                 {{for reg in usr_pc:}}
+                {{auxiliar = control_reponsable_id(reg)}}
                     <tr>
                         <td>{{=reg.identificador}}</td>
                         <td>{{=reg.placa_madre_id.marca_id.nombre}} - {{=reg.placa_madre_id.modelo}}</td>
                         <td>{{=reg.microprocesador_id.marca_id.nombre}} - {{=reg.microprocesador_id.modelo}}</td>
                         <td>{{=reg.memoria}} Mb</td>
                         <td>{{=reg.disco}} Gb</td>
+                        <td>{{=auxiliar}}</td>
+                        <td>{{=reg.observaciones}}</td>
                     </tr>
                 {{pass}}
             </table>
