@@ -12,6 +12,7 @@ def marcas():
         # , deletable=False
         # , editable=False
         # , details=False
+        , orderby=Marcas.nombre
         , csv=False
         , showbuttontext=False
         )
@@ -41,7 +42,11 @@ def microprocesadores():
 def placa_madre():
     titulo = 'Placa Madre'
     response.view = 'equipos/dispositivos.html'
-    grid = SQLFORM.grid(Placa_madre, csv=False, showbuttontext=False)
+    grid = SQLFORM.grid(Placa_madre
+        , orderby=Placa_madre.marca_id | Placa_madre.modelo
+        , csv=False
+        , showbuttontext=False
+        )
     return dict(grid = grid, titulo = titulo)
 
 
@@ -76,7 +81,11 @@ def portatiles():
 def impresoras():
     titulo = 'Impresoras'
     response.view = 'equipos/dispositivos.html'
-    grid = SQLFORM.grid(Impresoras, csv=False, showbuttontext=False)
+    grid = SQLFORM.grid(Impresoras
+        , orderby=Impresoras.marca_id | Impresoras.modelo
+        , csv=False
+        , showbuttontext=False
+        )
     return dict(grid = grid, titulo = titulo)
 
 @auth.requires_login()
@@ -88,14 +97,11 @@ def impresoras_insumos():
 
 @auth.requires_login()
 def stock_impresoras():
-    grid = SQLFORM.grid(Stock_impresoras, csv=False, showbuttontext=False)
-    # form = SQLFORM(Stock_impresoras)
-
-
-    # if form.accepts(request.vars, session):
-    #     response.flash = 'Guardado Correctamente'
-    # elif form.errors:
-    #     response.flash = 'No se pudo Guardar'
+    grid = SQLFORM.grid(Stock_impresoras
+        , orderby=db.stock_impresoras.impresora_id
+        , csv=False
+        , showbuttontext=False
+        )
 
     return dict(grid = grid)#, form=form)
 
@@ -105,7 +111,10 @@ def stock_impresoras():
 def monitores():
     titulo = 'Monitores'
     response.view = 'equipos/dispositivos.html'
-    grid = SQLFORM.grid(Monitores, csv=False, showbuttontext=False)
+    grid = SQLFORM.grid(Monitores
+        , orderby=Monitores.marca_id | Monitores.modelo
+        , csv=False
+        , showbuttontext=False)
     return dict(grid = grid, titulo = titulo)
 
 @auth.requires_login()
@@ -119,6 +128,7 @@ def stock_monitores():
             , Stock_monitores.area_id
             , Stock_monitores.estado
         ]
+        # , orderby=Stock_monitores.monitor_id
         , csv=False
         , showbuttontext=False
         , maxtextlength=30
@@ -130,7 +140,11 @@ def stock_monitores():
 def ups_estabilizador():
     titulo = 'UPS | Estabilizadores'
     response.view = 'equipos/dispositivos.html'
-    grid = SQLFORM.grid(Ups_estabilizador, csv=False, showbuttontext=False)
+    grid = SQLFORM.grid(Ups_estabilizador
+        , orderby=Ups_estabilizador.marca_id | Ups_estabilizador.modelo
+        , csv=False
+        , showbuttontext=False
+        )
     return dict(grid = grid, titulo = titulo)
 
 @auth.requires_login()
@@ -142,6 +156,7 @@ def stock_ups_estabilizador():
             , Stock_ups_estabilizador.area_id
             , Stock_ups_estabilizador.estado
         ]
+        # , orderby=Stock_ups_estabilizador.ups_estabilizador_id.marca_idself.
         , csv=False
         , showbuttontext=False
         )

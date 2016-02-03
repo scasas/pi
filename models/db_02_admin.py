@@ -56,7 +56,7 @@ Ups_estabilizador = db.define_table('tab_ups_estabilizador'
     , Field('marca_id', Marcas)
     , Field('modelo')
     , Field('tipo', requires=IS_IN_SET(['UPS','ESTABILIZADOR']))
-    , Field('potencia', requires=IS_IN_SET(['500', '650', '800', '1000' ]))
+    , Field('potencia', requires=IS_IN_SET(['500', '650', '800', '1000', '1200', '1500', '2000' ]))
     # , Field('autonomia', 'boolean', default=True)
     , format=lambda r: r.marca_id.nombre + ' ' + r.modelo + ' ' + r.tipo or ' '
     )
