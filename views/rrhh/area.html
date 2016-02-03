@@ -1,3 +1,4 @@
+{{from applications.pi.modules.tools import *}}
 {{extend 'layout.html'}}
 
 <i>Area:</i>
@@ -115,13 +116,7 @@
                     <th>Observaciones</th>
                 </tr>
                     {{for reg in usr_monitores:}}
-                    {{
-                    if (reg.responsable_id > 0):
-                        auxiliar = str(reg.responsable_id.apellido) + ', ' + str(reg.responsable_id.nombres)
-                    else:
-                        auxiliar = ''
-                    pass
-                    }}
+                    {{auxiliar = control_reponsable_id(reg)}}
                     <tr>
                         <td>{{=reg.identificador}}</td>
                         <td>{{=reg.monitor_id.marca_id.nombre}} - {{=reg.monitor_id.modelo}}</td>
@@ -141,13 +136,7 @@
                     <th>Observaciones</th>
                 </tr>
                     {{for reg in usr_ups_estabilizador:}}
-                    {{
-                    if (reg.responsable_id > 0):
-                        auxiliar = str(reg.responsable_id.apellido) + ', ' + str(reg.responsable_id.nombres)
-                    else:
-                        auxiliar = ''
-                    pass
-                    }}
+                    {{auxiliar = control_reponsable_id(reg)}}
                     <tr>
                         <td>{{=reg.identificador}}</td>
                         <td>{{=reg.ups_estabilizador_id.marca_id.nombre}} - {{=reg.ups_estabilizador_id.modelo}}</td>
@@ -168,11 +157,12 @@
                     <th>Observaciones</th>
                 </tr>
                 {{for reg in usr_portatiles:}}
+                {{auxiliar = control_reponsable_id(reg)}}
                     <tr>
                         <td>{{=reg.identificador}}</td>
                         <td>{{=reg.tipo}}: {{=reg.marca_id.nombre}} {{=reg.modelo}}</td>
                         <td>{{=reg.microprocesador_id.marca_id.nombre}} {{=reg.microprocesador_id.modelo}} | Ram: {{=reg.memoria}} MB | HD: {{=reg.disco}} GB | {{=reg.pulgadas}}" | UO: {{=reg.unidad_optica}} | SO: {{=reg.so}}</td>
-                        <td>{{=reg.responsable_id}}</td>
+                        <td>{{=auxiliar}}</td>
                         <td>{{=reg.observaciones}}</td>
                     </tr>
                 {{pass}}
@@ -180,13 +170,6 @@
         </div>
     </div>
 </div>
-
-
-
-{{BEAUTIFY(area)}}
-
-{{response.toolbar()}}
-
 
 <style type='text/css'>
     .title{
