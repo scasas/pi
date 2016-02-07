@@ -1,5 +1,0 @@
-{{=BEAUTIFY(agente)}}
-
-{{if len(agente["portatiles"]) >0:}}
-    {{=len(agente["portatiles"])}}
-{{pass}}
