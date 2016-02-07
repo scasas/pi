@@ -21,6 +21,8 @@ Marcas = db.define_table('tab_marcas'
 Impresoras = db.define_table('tab_impresoras'
     , Field('marca_id', Marcas)
     , Field('modelo')
+    , Field('costo_aproximado')
+    , Field('conexion_red', requires=IS_IN_SET(['No Posee','Ethernet', 'Wifi']))
     , Field('observaciones', 'text')
     # , auth.signature
     , format=lambda r: r.marca_id.nombre + ' ' + r.modelo or 'anónimo'

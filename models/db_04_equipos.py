@@ -1,8 +1,3 @@
-# def code_generator(record,id):
-#     prefix = 'art-'
-#     record.codigo = prefix + str(100 + id)
-#     return record
-
 Stock_impresoras = db.define_table('stock_impresoras'
     , Field('identificador')
     , Field('impresora_id', Impresoras)
