@@ -16,7 +16,7 @@ def marcas():
         , csv=False
         , showbuttontext=False
         )
-    return dict(grid=grid, titulo=titulo)
+    return dict(grid=grid, titulo=titulo, button="marcas")
 
 ## PC -------------------------------------------------------------------------
 @auth.requires_login()
@@ -24,19 +24,7 @@ def microprocesadores():
     titulo = 'Microprocesadores'
     response.view = 'equipos/dispositivos.html'
     grid = SQLFORM.grid(Microprocesadores, csv=False, showbuttontext=False)
-    return dict(grid = grid, titulo = titulo)
-
-# @auth.requires_login()
-# def load():
-    # form = SQLFORM(Microprocesadores)
-    # if form.process().accepted:
-    #     title = 'form accepted'
-    # elif form.errors:
-    #     title = 'form has errors'
-    # else:
-    #     title = 'please fill out the form'
-    # return dict(form=form, title=title)
-    # #return dict(grid = grid)
+    return dict(grid = grid, titulo = titulo, button="microprocesadores")
 
 @auth.requires_login()
 def placa_madre():
@@ -47,8 +35,7 @@ def placa_madre():
         , csv=False
         , showbuttontext=False
         )
-    return dict(grid = grid, titulo = titulo)
-
+    return dict(grid = grid, titulo = titulo, button="placa_madre")
 
 @auth.requires_login()
 def pc():
@@ -71,6 +58,8 @@ def pc():
         , madre_modal=modal2.formModal()
         )
 
+
+## PORTATILES ------------------------------------------------------------------
 @auth.requires_login()
 def portatiles():
     grid = SQLFORM.grid(Portatiles, csv=False, showbuttontext=False)
@@ -86,7 +75,11 @@ def impresoras():
         , csv=False
         , showbuttontext=False
         )
-    return dict(grid = grid, titulo = titulo)
+    return dict(
+        grid = grid
+        , titulo = titulo
+        , button="impresoras"
+        )
 
 @auth.requires_login()
 def impresoras_insumos():
@@ -115,7 +108,7 @@ def monitores():
         , orderby=Monitores.marca_id | Monitores.modelo
         , csv=False
         , showbuttontext=False)
-    return dict(grid = grid, titulo = titulo)
+    return dict(grid = grid, titulo = titulo, button="monitores")
 
 @auth.requires_login()
 def stock_monitores():
@@ -145,7 +138,7 @@ def ups_estabilizador():
         , csv=False
         , showbuttontext=False
         )
-    return dict(grid = grid, titulo = titulo)
+    return dict(grid = grid, titulo = titulo, button="ups_estabilizador")
 
 @auth.requires_login()
 def stock_ups_estabilizador():

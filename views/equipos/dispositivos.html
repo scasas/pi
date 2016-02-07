@@ -2,32 +2,38 @@
 
 <table>
     <tr>
-        <td>
+        <td class="btn btn-default" id="marcas">
             {{=A(IMG(_src=URL('static','images/dispositivos/notes.png')),_href=URL(c='equipos', f='marcas'), _class='btn')}}
+            <center>MARCAS</center>
         </td>
-        <td>
+        <td class="btn btn-default" id="placa_madre">
             {{=A(IMG(_src=URL('static','images/dispositivos/motherboard.png')),_href=URL(c='equipos', f='placa_madre'), _class='btn')}}
+            <center>PLACA MADRE</center>
         </td>
-        <td>
+        <td class="btn btn-default" id="microprocesadores">
             {{=A(IMG(_src=URL('static','images/dispositivos/cpu.png')),_href=URL(c='equipos', f='microprocesadores'), _class='btn')}}
+            <center>MICROPROCESADORES</center>
         </td>
-        <td>
+        <td class="btn btn-default" id="impresoras">
             {{=A(IMG(_src=URL('static','images/dispositivos/print.png')),_href=URL(c='equipos', f='impresoras'), _class='btn')}}
+            <center>IMPRESORAS</center>
         </td>
-        <td>
+        <td class="btn btn-default" id="monitores">
             {{=A(IMG(_src=URL('static','images/dispositivos/monitor.png')),_href=URL(c='equipos', f='monitores'), _class='btn')}}
+            <center>MONITORES</center>
         </td>
-        <td>
+        <td class="btn btn-default" id="ups_estabilizador">
             {{=A(IMG(_src=URL('static','images/dispositivos/status.png')),_href=URL(c='equipos', f='ups_estabilizador'), _class='btn')}}
+            <center>UPS | ESTABILIZADORES</center>
         </td>
     </tr>
     <tr>
-        <td><center>MARCAS</center></td>
-        <td><center>PLACA MADRE</center></td>
-        <td><center>MICROPROCESADORES</center></td>
-        <td><center>IMPRESORAS</center></td>
-        <td><center>MONITORES</center></td>
-        <td><center>UPS | ESTABILIZADORES</center></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
 </table>
 
@@ -63,7 +69,14 @@
 
 <style type="text/css">
     table tr td img{
-        max-width: 100px;
-        max-height: 100px;
+        max-width: 80px;
+        max-height: 80px;
     }
 </style>
+
+<script type="text/javascript">
+    $( document ).ready(function() {
+        $('table tr td.btn-success').removeClass('btn-success');
+        $('#{{=button}}').addClass('btn-success');
+    });
+</script>
