@@ -33,22 +33,32 @@ class Modal(object):
 
     def div_modal(self, content_modal):
         div_modal = DIV(
-            DIV(H3(self.title_modal, _id="myModalLabel"), _class="modal-header"),
-            DIV(content_modal, _class="modal-body"),
             DIV(
-                BUTTON("Cerrar"
-                    , **{
-                        "_class": "btn", 
-                        "_data-dismiss": "modal", 
-                        "_aria-hidden": "true"
-                        }),
-               _class="modal-footer",
-            ),
+                DIV(
+                    DIV(H3(self.title_modal, _id="modal_titulo"), _class="modal-header"),
+                    DIV(content_modal, _class="modal-body"),
+                    DIV(
+                        BUTTON("Cerrar"
+                            , **{
+                                "_class": "btn", 
+                                "_data-dismiss": "modal", 
+                                "_aria-hidden": "true"
+                                }),
+                       _class="modal-footer",
+                    ),
+                    _class="modal-content"
+                )
+                , **{
+                '_class': "modal-dialog",
+                '_role': "document"
+                }
+            )
+            ,
             **{
             "_id": "%s" % self.modal_id,
             "_class": "modal",
             "_role": "dialog",
-            "_aria-labelledby": "myModalLabel"}
+            "_aria-labelledby": "miEtiqueta"}
             )
         return div_modal
 
