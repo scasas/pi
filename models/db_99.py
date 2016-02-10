@@ -78,6 +78,7 @@ Stock_impresoras.impresora_id.requires = IS_IN_DB(db, Impresoras.id,  lambda r: 
 # UPS | Estabilizador
 Ups_estabilizador.marca_id.requires = IS_IN_DB(db(db.tab_marcas.ups_estabilizador == True), Marcas.id, '%(nombre)s')
 Stock_ups_estabilizador.responsable_id.requires = IS_EMPTY_OR(IS_IN_DB(db, Agentes.id,  lambda r: r.apellido.upper() + ' ' + r.nombres.upper(), orderby = Agentes.apellido | Agentes.nombres))
+# Stock_ups_estabilizador.ups_estabilizador_id.requires = IS_IN_DB(db, Ups_estabilizador.id,  lambda r: r.marca_id.nombre + ' ' + r.marca_id.modelo, orderby = Ups_estabilizador.marca_id | Ups_estabilizador.modelo)
 
 # Pedidos
 Pedidos.personal_id.requires = IS_IN_DB(db, Agentes.id,  lambda r: r.apellido.upper() + ' ' + r.nombres.upper(), orderby = Agentes.apellido | Agentes.nombres)

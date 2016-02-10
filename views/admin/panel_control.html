@@ -6,38 +6,26 @@
 
 <table>
     <tr>
-        <td>
+        <td class="btn btn-default" id="usuarios">
             {{=A(IMG(_src=URL('static','images/user/people.png')),_href=URL(c='admin', f='panel_user'), _class='btn')}}
+            <center>USUARIOS</center>
         </td>
-        <td>
+        <td class="btn btn-default" id="grupos">
             {{=A(IMG(_src=URL('static','images/user/social_network.png')),_href=URL(c='admin', f='panel_group'), _class='btn')}}
+            <center>GRUPOS</center>
         </td>
-        <td>
+        <td class="btn btn-default" id="perfiles">
             {{=A(IMG(_src=URL('static','images/user/users.png')),_href=URL(c='admin', f='panel_membership'), _class='btn')}}
+            <center>PERFILES</center>
         </td>
-        <td>
+        <td class="btn btn-default" id="permisos">
             {{=A(IMG(_src=URL('static','images/user/user_password.png')),_href=URL(c='admin', f='panel_permission'), _class='btn')}}
+            <center>PERMISOS</center>
         </td>
-
-        <!-- las dos siguientes entrados no se visualizan -->
-        <td>
-            {{A(IMG(_src=URL('static','images/user/user_signature.png')),_href=URL(c='admin', f='panel_sessiones'), _class='btn')}}
-        </td>
-        <td>
-            {{A(IMG(_src=URL('static','images/user/user_signature.png')),_href=URL(c='admin', f='marcas'), _class='btn')}}
-        </td>
-    </tr>
-    <tr>
-        <td><center>USUARIOS</center></td>
-        <td><center>GRUPOS</center></td>
-        <td><center>PERFILES</center></td>
-        <td><center>PERMISOS</center></td>
-        <!-- <td><center>SESSIONES</center></td>
-        <td><center>MARCAS</center></td> -->
     </tr>
 </table>
 
-
+<br/>
 {{if grid:}}
     <div class="well">
         <hr class="bs-docs-separator">
@@ -63,3 +51,17 @@
 
     </div>
 {{pass}}
+
+<style type="text/css">
+    table tr td img{
+        max-width: 80px;
+        max-height: 80px;
+    }
+</style>
+
+<script type="text/javascript">
+    $( document ).ready(function() {
+        $('table tr td.btn-success').removeClass('btn-success');
+        $('#{{=button}}').addClass('btn-success');
+    });
+</script>

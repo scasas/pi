@@ -1,6 +1,6 @@
 ### First Execution After of Install.
 if install:
-    # add User Root
+    # add User root and usuario
     if db(db.auth_user).isempty():
         
         items = [
@@ -28,8 +28,8 @@ if install:
             {'id': 2, 'role': 'user', 'description': 'usuarios'}
         ]
         db.auth_group.bulk_insert(items)
-        db.auth_membership(user_id=1, group_id=1)
-        db.auth_membership(user_id=2, group_id=2)
+        db.auth_membership.insert(user_id=1, group_id=1)
+        db.auth_membership.insert(user_id=2, group_id=2)
 
     # add marcas
     if db(db.tab_marcas).isempty():

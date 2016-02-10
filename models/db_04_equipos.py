@@ -1,8 +1,3 @@
-# def code_generator(record,id):
-#     prefix = 'art-'
-#     record.codigo = prefix + str(100 + id)
-#     return record
-
 Stock_impresoras = db.define_table('stock_impresoras'
     , Field('identificador')
     , Field('impresora_id', Impresoras)
@@ -24,7 +19,7 @@ Stock_monitores = db.define_table('stock_monitores'
     , Field('nro_serie')
     , Field('fecha_compra', 'date')
     , Field('observaciones', 'text')
-    , auth.signature
+    # , auth.signature
     )
 
 Stock_ups_estabilizador = db.define_table('stock_ups_estabilizador'
@@ -68,9 +63,7 @@ Portatiles = db.define_table('portatiles'
     , Field('pulgadas', requires=IS_IN_SET(tab_pulgadas))
     , Field('unidad_optica', requires=IS_IN_SET(tab_unidad_optica))
     , Field('so', requires=IS_IN_SET(tab_so))
-    , Field('propietario', requires=IS_IN_SET(['Vivienda', 'Particular | Personal']))
+    , Field('propietario', requires=IS_IN_SET(['Vivienda', 'Particular | Personal']), default='Vivienda')
     , Field('observaciones', 'text')
     # , auth.signature
     )
-
-db.portatiles.propietario.default='Vivienda'

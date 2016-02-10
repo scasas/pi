@@ -21,6 +21,8 @@ Marcas = db.define_table('tab_marcas'
 Impresoras = db.define_table('tab_impresoras'
     , Field('marca_id', Marcas)
     , Field('modelo')
+    , Field('costo_aproximado')
+    , Field('conexion_red', requires=IS_IN_SET(['No Posee','Ethernet', 'Wifi']))
     , Field('observaciones', 'text')
     # , auth.signature
     , format=lambda r: r.marca_id.nombre + ' ' + r.modelo or 'anónimo'
@@ -58,7 +60,7 @@ Ups_estabilizador = db.define_table('tab_ups_estabilizador'
     , Field('tipo', requires=IS_IN_SET(['UPS','ESTABILIZADOR']))
     , Field('potencia', requires=IS_IN_SET(['500', '650', '800', '1000', '1200', '1500', '2000' ]))
     # , Field('autonomia', 'boolean', default=True)
-    , format=lambda r: r.marca_id.nombre + ' ' + r.modelo + ' ' + r.tipo or ' '
+    , format=lambda r: r.marca_id.nombre + ' ' + r.modelo + ' ' + r.tipo + ' ' + r.potencia + 'VA' or ' '
     )
 
 # PC & COMPONENTES ------------------------------------------------------------
