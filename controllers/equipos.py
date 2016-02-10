@@ -44,8 +44,8 @@ def pc():
     field1 = db.pc.microprocesador_id
     field2 = db.pc.placa_madre_id
     
-    modal1 = Modal(field1, 'Agregar', 'Haciendo clic, podes agregar un micro', 'MICRO')
-    modal2 = Modal(field2, 'Agregar', 'Haciendo clic, podes agregar una motherboard', 'MADRE')
+    modal1 = Modal(field1, 'Agregar', 'Haciendo clic, podes agregar un micro', 'Microprocesador')
+    modal2 = Modal(field2, 'Agregar', 'Haciendo clic, podes agregar una motherboard', 'Placa Madre')
 
     db.pc.microprocesador_id.comment = modal1.create()
     db.pc.placa_madre_id.comment = modal2.create()    
