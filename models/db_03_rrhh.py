@@ -1,7 +1,7 @@
 Areas = db.define_table('areas'
     , Field('nombre')
     , Field('observaciones', 'text')
-    , auth.signature
+    # , auth.signature
     , format='%(nombre)s'
     )
 
@@ -14,7 +14,6 @@ Agentes = db.define_table('agentes'
     , Field('tel_coorporativo')
     , Field('tel_celular')
     , Field('tel_fijo')
-    , auth.signature
+    # , auth.signature
     , format='%(apellido)s %(nombres)s'
-    # , migrate=True
     )
