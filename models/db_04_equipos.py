@@ -46,6 +46,7 @@ Pc = db.define_table('pc'
     , Field('observaciones', 'text')
     , Field('area_id', Areas)
     , Field('responsable_id', Agentes)
+    , Field('estado', requires=IS_IN_SET(tab_estado))
     # , auth.signature
     )
 
@@ -64,6 +65,7 @@ Portatiles = db.define_table('portatiles'
     , Field('unidad_optica', requires=IS_IN_SET(tab_unidad_optica))
     , Field('so', requires=IS_IN_SET(tab_so))
     , Field('propietario', requires=IS_IN_SET(['Vivienda', 'Particular | Personal']), default='Vivienda')
+    , Field('estado', requires=IS_IN_SET(tab_estado))
     , Field('observaciones', 'text')
     # , auth.signature
     )
