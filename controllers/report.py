@@ -85,3 +85,94 @@ def index():
                         default_css=css,
                         encoding='utf-8')
         return doc.getvalue()
+
+def test():
+    response.view = 'test.html'
+    data = []
+    agentes = db(Agentes).select()
+    
+    for reg in agentes:
+        data.append(
+                [
+                    reg.id, reg.apellido, reg.nombres
+                ]
+            )
+    data= [['00', '01', '02', '03', '04'],
+       ['10', '11', '12', '13', '14'],
+       ['20', '21', '22', '23', '24'],
+       ['30', '31', '32', '33', '34']]
+
+    return dict(agentes=data)
+
+def pdf():
+    from reportlab.platypus import *
+    from reportlab.lib.styles import getSampleStyleSheet
+    from reportlab.rl_config import defaultPageSize
+    from reportlab.lib.units import inch, mm
+    from reportlab.lib.enums import TA_LEFT, TA_RIGHT, TA_CENTER, TA_JUSTIFY
+    from reportlab.lib import colors
+    from uuid import uuid4
+    from cgi import escape
+    import os
+
+    title = "Listado de Agentes"
+    heading = "First Paragraph"
+    text = 'bla '* 100
+
+    styles = getSampleStyleSheet()
+    tmpfilename=os.path.join(request.folder,'private',str(uuid4()))
+    doc = SimpleDocTemplate(tmpfilename)
+    story = []
+    story.append(Paragraph(escape(title),styles["Title"]))
+    story.append(Paragraph(escape(heading),styles["Heading2"]))
+    story.append(Paragraph(escape(text),styles["Normal"]))
+    story.append(Spacer(1,0.5*inch))
+    
+    data= [['00', '01', '02', '03', '04'],
+       ['10', '11', '12', '13', '14'],
+       ['20', '21', '22', '23', '24'],
+       ['30', '31', '32', '33', '34']]
+    t=Table(data)
+    t.setStyle(TableStyle([('BACKGROUND',(1,1),(-2,-2),colors.green),
+                           ('TEXTCOLOR',(0,0),(1,-1),colors.red)]))
+    story.append(t)
+
+    story.append(Spacer(1,0.5*inch))
+    
+    data= [['00', '01', '02', '03', '04'],
+       ['10', '11', '12', '13', '14'],
+       ['20', '21', '22', '23', '24'],
+       ['30', '31', '32', '33', '34']]
+
+    data = [['00', '01', '02', '03', '04']]
+    agentes = db(Agentes).select( limitby=(1, 39))
+    for reg in agentes:
+        data.append(
+                [
+                    reg.id, reg.id, reg.id,     reg.apellido, reg.nombres
+                ]
+            )
+
+
+    
+
+    t=Table(data,5*[0.4*inch], 40*[0.4*inch])
+    t.setStyle(TableStyle([('ALIGN',(1,1),(-2,-2),'RIGHT'),
+                       ('TEXTCOLOR',(1,1),(-2,-2),colors.red),
+                       ('VALIGN',(0,0),(0,-1),'TOP'),
+                       ('TEXTCOLOR',(0,0),(0,-1),colors.blue),
+                       ('ALIGN',(0,-1),(-1,-1),'CENTER'),
+                       ('VALIGN',(0,-1),(-1,-1),'MIDDLE'),
+                       ('TEXTCOLOR',(0,-1),(-1,-1),colors.green),
+                       ('INNERGRID', (0,0), (-1,-1), 0.25, colors.black),
+                       ('BOX', (0,0), (-1,-1), 0.25, colors.black),
+                       ]))
+ 
+    story.append(t)
+    
+    doc.build(story)
+    data = open(tmpfilename,"rb").read()
+
+    os.unlink(tmpfilename)
+    response.headers['Content-Type']='application/pdf'
+    return data
