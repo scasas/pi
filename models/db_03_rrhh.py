@@ -14,6 +14,7 @@ Agentes = db.define_table('agentes'
     , Field('tel_coorporativo')
     , Field('tel_celular')
     , Field('tel_fijo')
+    , Field('sexo', requires=IS_IN_SET(['M', 'F']))
     # , auth.signature
     , format='%(apellido)s %(nombres)s'
     )
