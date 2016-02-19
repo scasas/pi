@@ -1,0 +1,93 @@
+<!-- incluyo los archivos CSS -->
+{{response.files.insert(60,URL('static','js/jquery.datatables/bootstrap/dataTables.bootstrap.css'))}}
+<!-- {{response.files.insert(61,URL('static','js/jquery.datatables/css/jquery.dataTables.css'))}} -->
+
+<!-- incluyo los archivos JavasScript -->
+{{response.files.insert(81,URL('static','js/jquery.datatables/js/jquery.dataTables.min.js'))}}
+{{response.files.insert(82,URL('static','js/jquery.datatables/js/jquery.dataTables.columnFilter.js'))}}
+{{response.files.insert(83,URL('static','js/jquery.datatables/js/fnReloadAjax.js'))}}
+
+<!-- Add script for dataTables -->
+{{response.files.append(URL('static', 'extensions/TableTools/css/dataTables.tableTools.css'))}}
+{{response.files.append(URL('static', 'extensions/TableTools/css/dataTables.bootstrap.css'))}}
+{{response.files.append(URL('static', 'extensions/TableTools/js/dataTables.tableTools.js'))}}
+{{response.files.append(URL('static', 'extensions/TableTools/js/dataTables.bootstrap.js'))}}
+
+
+{{extend 'layout.html'}}
+
+<table class="table table-bordered span12" id="generadores_listado">
+    <thead>
+        <th>ID</th>
+        <th>RK</th>
+        <th>NOMBRE</th>
+        <th>SUC</th>
+        <th>NOV</th>
+        <th>CC</th>
+        <th>CER</th>
+        <th>VEN</th>
+        <th>OPERACIONES </th>
+    </thead>
+    <tbody>
+        
+    </tbody>
+</table>
+
+<style>
+table td:nth-child(1),
+table td:nth-child(2),
+table td:nth-child(3),
+table td:nth-child(4),
+table td:nth-child(5),
+table td:nth-child(6),
+table td:nth-child(7),
+table td:nth-child(9){
+    text-align: center;
+}
+table td:nth-child(3){
+    text-align: left;
+}
+
+table td:nth-child(8){
+    text-align: right;
+}
+
+</style>
+
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><span id='titulo'></span></h3>
+            </div>
+            <div class="modal-body">
+                <div id='contenido' class='container-fluid'></div>
+            </div>
+            <div class="modal-footer">
+                <span class='btn-ok'></span>
+                <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" >
+    $(document).ready(function() {
+
+        var oTable = $('#generadores_listado').dataTable( {
+            "aaSorting": []
+            , "oLanguage": {sUrl: "{{=URL('static','js/jquery.datatables/dataTables.spanish.txt')}}"}
+            , "aLengthMenu": [50, 100, 500, 1000]
+            , "iDisplayLength": 500
+            /*, "sScrollY": "200px"*/
+            , "sAjaxSource": "{{=URL('consultas','get_data.json')}}"
+            /*, "sDom": "frtiS"*/
+            , "sDom": 'lRfrtip'
+            , "bDeferRender": true
+            , "bPaginate": true
+        } );
+
+    });
+
+    
+</script>

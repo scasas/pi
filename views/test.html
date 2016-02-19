@@ -1,5 +1,5 @@
-{{=BEAUTIFY(agente)}}
+{{BEAUTIFY(agentes)}}
 
-{{if len(agente["portatiles"]) >0:}}
-    {{=len(agente["portatiles"])}}
+{{for reg in agentes:}}
+	{{=BEAUTIFY(reg)}}
 {{pass}}
