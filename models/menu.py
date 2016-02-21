@@ -64,7 +64,7 @@ def _():
         ),
         (T('Reportes'), False, None,
             [
-                (SPAN(I(_class='glyphicon glyphicon-edit'), ' Test'),False, URL('report', 'index.pdf'))
+                (SPAN(I(_class='glyphicon glyphicon-edit'), ' Listados'),False, URL('admin', 'list'))
             ]
         ),
     ]

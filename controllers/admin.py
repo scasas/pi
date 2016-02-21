@@ -57,3 +57,8 @@ def panel_control():
             grid = SQLFORM.grid(db.auth_permission, csv=False)
 
     return dict(grid = grid, value = value, button="")
+
+
+@auth.requires_login()
+def list():
+    return dict()
