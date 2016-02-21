@@ -1,0 +1,79 @@
+{{extend 'layout.html'}}
+
+<h3>REPORTES</h3>
+
+<div class="">
+	<br/>{{=A(IMG(_src=URL('static','images/user/people.png')), ' Listado de Agentes', _href=URL(c='report', f='list_agentes'), _class='btn btn-default' , _target="blanc")}}
+
+    <br/>{{=A(IMG(_src=URL('static','images/dispositivos/server.png')), 'Listado de PCs', _href=URL(c='report', f='list_pc'), _class='btn btn-default' , _target="blanc")}}
+    
+    <br/>{{=A(IMG(_src=URL('static','images/dispositivos/monitor.png')), 'Listado de Monitores',_href=URL(c='report', f='list_monitores'), _class='btn btn-default' , _target="blanc")}}
+
+    <br/>{{=A(IMG(_src=URL('static','images/dispositivos/print.png')), 'Listado de Impresoras', _href=URL(c='report', f='list_impresoras'), _class='btn btn-default' , _target="blanc")}}    
+    
+    <br/>{{=A(IMG(_src=URL('static','images/dispositivos/status.png')), 'Listado de UPS | Estabilizadores', _href=URL(c='report', f='list_ups_estabilizador'), _class='btn btn-default' , _target="blanc")}}
+    
+</div>
+
+<table class="table table-solid">
+    <thead></thead>
+    <tbody>
+        <tr>
+        <td>Agentes</td>
+            <td>{{=IMG(_src=URL('static','images/tools/pdf.png'))}}</td>
+            <td>{{=IMG(_src=URL('static','images/dispositivos/notes.png'))}}</td>
+        </tr>
+        <tr>
+            <td>PC</td>
+            <td>{{=IMG(_src=URL('static','images/tools/pdf.png'))}}</td>
+            <td>{{=IMG(_src=URL('static','images/dispositivos/notes.png'))}}</td>
+        </tr>
+        <tr>
+            <td>Portatiles</td>
+            <td>{{=IMG(_src=URL('static','images/tools/pdf.png'))}}</td>
+            <td>{{=IMG(_src=URL('static','images/dispositivos/notes.png'))}}</td>
+        </tr>
+        <tr>
+            <td>Monitores</td>
+            <td>{{=IMG(_src=URL('static','images/tools/pdf.png'))}}</td>
+            <td>{{=IMG(_src=URL('static','images/dispositivos/notes.png'))}}</td>
+        </tr>
+        <tr>
+            <td>Impresoras</td>
+            <td>{{=IMG(_src=URL('static','images/tools/pdf.png'))}}</td>
+            <td>{{=IMG(_src=URL('static','images/dispositivos/notes.png'))}}</td>
+        </tr>
+        <tr>
+            <td>UPS | Estabilizadores</td>
+            <td>{{=IMG(_src=URL('static','images/tools/pdf.png'))}}</td>
+            <td>{{=IMG(_src=URL('static','images/dispositivos/notes.png'))}}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>{{=IMG(_src=URL('static','images/tools/pdf.png'))}}</td>
+            <td>{{=IMG(_src=URL('static','images/dispositivos/notes.png'))}}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>{{=IMG(_src=URL('static','images/tools/pdf.png'))}}</td>
+            <td>{{=IMG(_src=URL('static','images/dispositivos/notes.png'))}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<style type='text/css'>
+    h3{
+        color: green;
+        font-size: 1.8em;
+    }
+    /*Borrar esta directiva*/
+    img{
+        height: 48px;
+        width: 48px;
+    }
+</style>
+<script>
+    $(document).ready(function(){
+        
+    });
+</script>
