@@ -1,26 +1,51 @@
 from reportlab.lib.pagesizes import landscape, A4, LEGAL, portrait
 
-def pdf2():
+def pdf2(data, page):
     from reportlab.platypus import *
     from reportlab.lib.styles import getSampleStyleSheet
     from reportlab.rl_config import defaultPageSize
     from reportlab.lib.units import inch, mm, cm
     from reportlab.lib.enums import TA_LEFT, TA_RIGHT, TA_CENTER, TA_JUSTIFY
-    # from reportlab.lib.pagesizes import landscape, A4, LEGAL
     from reportlab.lib import colors
     from reportlab.pdfgen import canvas
     from uuid import uuid4
     from cgi import escape
     import os
 
-    c = canvas.Canvas("canvas_page_num.pdf")
+    styles = getSampleStyleSheet()
+    
+    tmpfilename=os.path.join(request.folder,'private',str(uuid4()))
+    
+    doc = SimpleDocTemplate(
+        tmpfilename
+        , pagesize=page['orientation'](page['size']) 
+        , rightMargin=1*cm, leftMargin=1*cm, topMargin=1.5*cm, bottomMargin=0.5*cm
+        )
+    
+    story = []
 
-    for i in range(5):
-        page_num = c.getPageNumber()
-        text = "This is page %s" % page_num
-        c.drawString(100, 750, text)
-        c.showPage()
-        c.save()
+    t=Table(data)
+    t.setStyle(
+            TableStyle(
+                [
+                    ('ALIGN',(0,0),(0,-1),'RIGHT'),
+                    ('ALIGN',(1,0),(1,-1),'LEFT'),
+                    ('INNERGRID', (0,0), (-1,-1), 0.25, colors.black),
+                    ('BOX', (0,0), (-1,-1), 0.25, colors.black),
+                ]
+            )
+        )
+    
+    story.append(t)
+    
+    doc.build(story)
+
+    data = open(tmpfilename,"rb").read()
+
+    os.unlink(tmpfilename)
+    response.headers['Content-Type']='application/pdf'
+    response.headers['Content-Disposition']= 'inline; filename=report.pdf'
+    return data
 
 def pdf(data, title, page):
     from reportlab.platypus import *
@@ -108,6 +133,7 @@ def draw_page(self, page_count):
 
 # LISTADOS ===================================================================================
 
+@auth.requires_login()
 def list_agentes():
 
     data = [['Item', 'APELLIDO', 'NOMBRES', 'AREA']]
@@ -129,6 +155,7 @@ def list_agentes():
 
     return pdf(data, 'Listado de Agentes', page)
 
+@auth.requires_login()
 def list_pc():
 
     from applications.pi.modules.tools import *
@@ -163,7 +190,54 @@ def list_pc():
 
     return pdf(data, 'Listado de PCs', page)
 
+@auth.requires_login()
+def list_portatiles():
 
+    from applications.pi.modules.tools import *
+
+    pc = db(Portatiles).select()
+
+    page = {}
+    page['size'] = A4
+    page['orientation'] = landscape
+
+    aux = []
+    i=0
+    for reg in pc:
+        i=i+1
+
+        aux.append([
+            i
+            , reg.tipo
+            , control_microprocesador_id(reg)
+            , reg.disco + ' GB'
+            , reg.memoria + ' MB'
+            , reg.pulgadas
+            , reg.so
+            , reg.unidad_optica
+            , reg.area_id.nombre
+            , control_reponsable_id(reg)
+            ])
+
+    aux = sorted(aux, key=lambda x:x[1])#, reverse=True)
+
+    data = []
+    data = [[
+        'Item'
+        , 'Tipo'
+        , 'Microprocesador'
+        , 'Disco'
+        , 'Memoria'
+        , 'Pulgadas'
+        , 'SO'
+        , 'Unidad Optica'
+        , 'Area'
+        , 'Responsable']]
+    data = data + aux
+
+    return pdf(data, 'Listado de Portatiles', page)
+
+@auth.requires_login()
 def list_monitores():
 
     from applications.pi.modules.tools import *
@@ -189,6 +263,7 @@ def list_monitores():
 
     return pdf(data, 'Listado de Monitores', page)
 
+@auth.requires_login()
 def list_impresoras():
 
     from applications.pi.modules.tools import *
@@ -222,6 +297,7 @@ def list_impresoras():
 
     return pdf(data, 'Listado de Impresoras', page)
 
+@auth.requires_login()
 def list_ups_estabilizador():
 
     from applications.pi.modules.tools import *
@@ -252,3 +328,122 @@ def list_ups_estabilizador():
     data = data + aux
 
     return pdf(data, 'Listado de UPS | Estabilizadores', page)
+
+@auth.requires_login()
+def list_pedidos():
+
+    from applications.pi.modules.tools import *
+
+    pedidos = db(Pedidos).select()
+
+    page = {}
+    page['size'] = LEGAL
+    page['orientation'] = landscape
+
+    aux = []
+    i=0
+    for reg in pedidos:
+        i=i+1
+
+        aux.append([
+            i
+            , reg.personal_id.apellido + ' ' + reg.personal_id.nombres
+            , reg.fecha_solicitud
+            , reg.problema_tipo
+            , reg.problema_detalle
+            , reg.problema_solucion_propuesta
+            , reg.problema_estado
+            , reg.personal_computos_id.apellido + ' ' + reg.personal_computos_id.nombres
+            ])
+
+    aux = sorted(aux, key=lambda x:x[3])#, reverse=True)
+
+    data = []
+    data = [['Item'
+        , 'Agente'
+        , 'Fecha'
+        , 'Tipo de Problema'
+        , 'Detalle del Problema'
+        , 'Solucion Propuesta'
+        , 'Estado'
+        , 'Personal de Computos']]
+    data = data + aux
+
+    return pdf(data, 'Control de Pedidos', page)
+
+
+
+
+@auth.requires_login()
+def etiqueta():
+
+    from applications.pi.modules.tools import *
+
+    if request.vars.dispositivo == 'pc':
+        grid = db(Pc.id == request.vars.id).select()
+        aux = [
+            [ 'Identificador: ', 'CPU-' + str(100+grid[0].id) ],
+            [ 'Microprocesador: ', control_microprocesador_id(grid[0])],
+            [ 'Placa Madre: ', control_placa_madre_id(grid[0])],
+            [ 'Disco: ', grid[0].disco + ' GB'],
+            [ 'Memoria: ', grid[0].memoria + ' MB'],
+            [ 'SO: ', grid[0].so],
+            [ 'Area: ', grid[0].area_id.nombre],
+            [ 'Responsable: ', control_reponsable_id(grid[0])],
+        ]
+
+    elif request.vars.dispositivo == 'impresoras':
+        grid = db(Stock_impresoras.id == request.vars.id).select()
+        aux = [
+            [ 'Identificador: ', 'IMP-' + str(100+grid[0].id) ],
+            [ 'Impresora: ', grid[0].impresora_id.marca_id.nombre + ' ' + grid[0].impresora_id.modelo],
+            [ 'Area: ', grid[0].area_id.nombre],
+            [ 'Responsable: ', control_reponsable_id(grid[0])],
+        ]
+
+    elif request.vars.dispositivo == 'monitores':
+        grid = db(Stock_monitores.id == request.vars.id).select()
+        aux = [
+            [ 'Identificador: ', 'MON-' + str(100+grid[0].id) ],
+            [ 'Monitor: ', grid[0].monitor_id.marca_id.nombre + ' ' + grid[0].monitor_id.modelo ],
+            [ 'Area: ', grid[0].area_id.nombre],
+            [ 'Responsable: ', control_reponsable_id(grid[0])],
+        ]
+
+    elif request.vars.dispositivo == 'portatiles':
+        grid = db(Portatiles.id == request.vars.id).select()
+        aux = [
+            [ 'Identificador: ', 'POR-' + str(100+grid[0].id) ],
+            [ 'Tipo: ', grid[0].tipo],
+            [ 'Marca: ', grid[0].marca_id.nombre],
+            [ 'Modelo: ', grid[0].modelo],
+            [ 'Microprocesador: ', control_microprocesador_id(grid[0])],
+            [ 'Memoria RAM: ', grid[0].memoria + ' MB'],
+            [ 'Capacidad de Disco: ', grid[0].disco + ' GB'],
+            [ 'Pulgadas: ', grid[0].pulgadas + '"'],
+            [ 'SO: ', grid[0].so],
+            [ 'Area: ', grid[0].area_id.nombre],
+            [ 'Responsable: ', control_reponsable_id(grid[0])],
+        ]
+
+    elif request.vars.dispositivo == 'ups_estabilizador':
+        grid = db(Stock_ups_estabilizador.id == request.vars.id).select()
+        aux = [
+            [ 'Identificador: ', 'U_E-' + str(100+grid[0].id) ],
+            [ 'Dispositivo: ', grid[0].ups_estabilizador_id.marca_id.nombre + ' ' + grid[0].ups_estabilizador_id.modelo ],
+            [ 'Estado: ', grid[0].estado],
+            [ 'Area: ', grid[0].area_id.nombre],
+            [ 'Responsable: ', control_reponsable_id(grid[0])],
+        ]
+
+    else:
+        redirect(URL(c='default', f='index'))
+
+    # return dict(grid = grid)
+    page = {}
+    page['size'] = A4
+    page['orientation'] = portrait
+
+    
+
+    return pdf2(aux, page)
