@@ -16,3 +16,17 @@ def pedidos():
         , showbuttontext=False
     )
     return dict(form = grid, title=titulo)
+
+@auth.requires_login()
+def consulta():
+
+    if request.vars.dispositivo == 'pedidos':
+        grid = db(Pedidos).select()
+        titulo = 'Control de Pedidos'
+        response.title = 'Control de Pedidos'
+        response.view = 'pedidos/consulta_pedidos.html'
+
+    else:
+        redirect(URL(c='default', f='index'))
+
+    return dict(grid = grid, titulo=titulo)

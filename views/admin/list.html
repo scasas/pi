@@ -1,0 +1,142 @@
+{{extend 'layout.html'}}
+
+<h3>REPORTES</h3>
+
+<div class="">
+	<br/>{{A(IMG(_src=URL('static','images/user/people.png')), ' Listado de Agentes', _href=URL(c='report', f='list_agentes'), _class='btn btn-default' , _target="blanc")}}   
+    
+    
+</div>
+
+<table class="table table-bordered">
+    <thead></thead>
+    <tbody>
+        <tr>
+            <td>{{=IMG(_src=URL('static','images/user/contacts.png'))}} Areas</td>
+            <td>{{IMG(_src=URL('static','images/tools/pdf.png'))}}</td>
+            <td>{{IMG(_src=URL('static','images/dispositivos/notes.png'))}}</td>
+        </tr>
+        <tr>
+            <td>{{=IMG(_src=URL('static','images/user/people.png'))}} Agentes</td>
+            <td>
+                {{=A(IMG(_src=URL('static','images/tools/pdf.png')), _href=URL(c='report', f='list_agentes'), _class='btn btn-default' , _target="blanc")}}
+            </td>
+            <td>{{IMG(_src=URL('static','images/dispositivos/notes.png'))}}</td>
+        </tr>
+        <tr>
+            <td>{{=IMG(_src=URL('static','images/dispositivos/server.png'))}}PC</td>
+            <td>
+                {{=A(IMG(_src=URL('static','images/tools/pdf.png')), _href=URL(c='report', f='list_pc'), _class='btn btn-default' , _target="blanc")}}
+            </td>
+            <td>
+                {{=A(
+                    IMG(
+                        _src=URL('static','images/dispositivos/notes.png')
+                    )
+                    , _href=URL(c='equipos', f='consulta', vars=dict(dispositivo='pc',id=0))
+                    , _class='btn btn-default'
+                    , _target='blanc'
+                ) }}
+            </td>
+        </tr>
+        <tr>
+            <td>{{=IMG(_src=URL('static','images/dispositivos/notebook.png'))}}Portatiles</td>
+            <td>
+                {{=A(IMG(_src=URL('static','images/tools/pdf.png')), _href=URL(c='report', f='list_portatiles'), _class='btn btn-default' , _target="blanc")}}
+            </td>
+            <td>
+                {{=A(
+                    IMG(
+                        _src=URL('static','images/dispositivos/notes.png')
+                    )
+                    , _href=URL(c='equipos', f='consulta', vars=dict(dispositivo='portatiles',id=0))
+                    , _class='btn btn-default'
+                    , _target='blanc'
+                ) }}
+            </td>
+        </tr>
+        <tr>
+            <td>{{=IMG(_src=URL('static','images/dispositivos/monitor.png'))}}Monitores</td>
+            <td>
+                {{=A(IMG(_src=URL('static','images/tools/pdf.png')),_href=URL(c='report', f='list_monitores'), _class='btn btn-default' , _target="blanc")}}
+            </td>
+            <td>
+                {{=A(
+                    IMG(
+                        _src=URL('static','images/dispositivos/notes.png')
+                    )
+                    , _href=URL(c='equipos', f='consulta', vars=dict(dispositivo='monitores',id=0))
+                    , _class='btn btn-default'
+                    , _target='blanc'
+                ) }}
+            </td>
+        </tr>
+        <tr>
+            <td>{{=IMG(_src=URL('static','images/dispositivos/print.png'))}}Impresoras</td>
+            <td>
+                {{=A(IMG(_src=URL('static','images/tools/pdf.png')), _href=URL(c='report', f='list_impresoras'), _class='btn btn-default' , _target="blanc")}} 
+            </td>
+            <td>
+                {{=A(
+                    IMG(
+                        _src=URL('static','images/dispositivos/notes.png')
+                    )
+                    , _href=URL(c='equipos', f='consulta', vars=dict(dispositivo='impresoras',id=0))
+                    , _class='btn btn-default'
+                    , _target='blanc'
+                ) }}
+            </td>
+        </tr>
+        <tr>
+            <td>{{=IMG(_src=URL('static','images/dispositivos/status.png'))}} UPS | Estabilizadores</td>
+            <td>
+                {{=A(IMG(_src=URL('static','images/tools/pdf.png')), _href=URL(c='report', f='list_ups_estabilizador'), _class='btn btn-default' , _target="blanc")}}
+            </td>
+            <td>
+                {{=A(
+                    IMG(
+                        _src=URL('static','images/dispositivos/notes.png')
+                    )
+                    , _href=URL(c='equipos', f='consulta', vars=dict(dispositivo='ups_estabilizador',id=0))
+                    , _class='btn btn-default'
+                    , _target='blanc'
+                ) }}
+            </td>
+        </tr>
+
+        <tr>
+            <td>{{=IMG(_src=URL('static','images/tools/jobs.png'))}} Control de Pedidos</td>
+            <td>
+                {{=A(IMG(_src=URL('static','images/tools/pdf.png')), _href=URL(c='report', f='list_pedidos'), _class='btn btn-default' , _target="blanc")}}
+            </td>
+            <td>
+                {{=A(
+                    IMG(
+                        _src=URL('static','images/dispositivos/notes.png')
+                    )
+                    , _href=URL(c='pedidos', f='consulta', vars=dict(dispositivo='pedidos',id=0))
+                    , _class='btn btn-default'
+                    , _target='blanc'
+                ) }}
+            </td>
+        </tr>
+        
+    </tbody>
+</table>
+
+<style type='text/css'>
+    h3{
+        color: green;
+        font-size: 1.8em;
+    }
+    /*Borrar esta directiva*/
+    img{
+        height: 48px;
+        width: 48px;
+    }
+</style>
+<script>
+    $(document).ready(function(){
+        
+    });
+</script>

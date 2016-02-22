@@ -154,3 +154,42 @@ def stock_ups_estabilizador():
         , showbuttontext=False
         )
     return dict(grid = grid)
+
+
+@auth.requires_login()
+def consulta():
+
+    if request.vars.dispositivo == 'pc':
+        grid = db(Pc).select()
+        titulo = 'PCs'
+        response.title = 'PCs'
+        response.view = 'equipos/consulta_pc.html'
+
+    elif request.vars.dispositivo == 'impresoras':
+        grid = db(Stock_impresoras).select()
+        titulo = 'Impresoras'
+        response.title = 'Impresoras'
+        response.view = 'equipos/consulta_impresoras.html'
+
+    elif request.vars.dispositivo == 'monitores':
+        grid = db(Stock_monitores).select()
+        titulo = 'Monitores'
+        response.title = 'Monitores'
+        response.view = 'equipos/consulta_monitores.html'
+
+    elif request.vars.dispositivo == 'portatiles':
+        grid = db(Portatiles).select()
+        titulo = 'Portatiles'
+        response.title = 'Portatiles'
+        response.view = 'equipos/consulta_portatiles.html'
+
+    elif request.vars.dispositivo == 'ups_estabilizador':
+        grid = db(Stock_ups_estabilizador).select()
+        titulo = 'UPS | Estabilizadores'
+        response.title = 'UPS | Estabilizadores'
+        response.view = 'equipos/consulta_ups_estabilizador.html'
+
+    else:
+        redirect(URL(c='default', f='index'))
+
+    return dict(grid = grid, titulo=titulo)

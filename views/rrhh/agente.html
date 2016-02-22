@@ -18,13 +18,13 @@
 <br/><br/>
 
 <div class="btn-group">    
-    {{=A(IMG(_src=URL('static','images/dispositivos/server.png')), _href=URL(c='rrhh', f='agentes', vars=dict(id=1) ), _class='btn btn-default' )}}
+    {{=A(IMG(_src=URL('static','images/dispositivos/server.png')), _href=URL(c='equipos', f='pc', args=['new', 'pc'], user_signature=True ), _class='btn btn-default', _target="blank" )}}
     
-    {{=A(IMG(_src=URL('static','images/dispositivos/monitor.png')), _href=URL(c='admin', f='panel_user'), _class='btn btn-default' )}}
+    {{=A(IMG(_src=URL('static','images/dispositivos/monitor.png')), _href=URL(c='equipos', f='stock_monitores', args=['new', 'stock_monitores'], user_signature=True), _class='btn btn-default', _target="blank" )}}
     
-    {{=A(IMG(_src=URL('static','images/dispositivos/status.png')), _href=URL(c='admin', f='panel_user'), _class='btn btn-default' )}}
-    
-    {{=A(IMG(_src=URL('static','images/dispositivos/print.png')), _href=URL(c='admin', f='panel_user'), _class='btn btn-default' )}}    
+    {{=A(IMG(_src=URL('static','images/dispositivos/print.png')), _href=URL(c='equipos', f='stock_impresoras', args=['new', 'stock_impresoras'], user_signature=True), _class='btn btn-default', _target="blank"  )}}
+
+    {{=A(IMG(_src=URL('static','images/dispositivos/status.png')), _href=URL(c='equipos', f='stock_ups_estabilizador', args=['new', 'stock_ups_estabilizador'], user_signature=True), _class='btn btn-default', _target="blank"  )}}
 </div>
 
 <br/><br/>
