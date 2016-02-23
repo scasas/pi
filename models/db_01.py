@@ -103,9 +103,8 @@ auth.settings.reset_password_requires_verification = True
 T.set_current_languages('es-AR')
 
 tab_disco = [0, 40, 80, 160, 300, 500, 640, 1024, 2048, 3072, 4096] #GB
-tab_memoria = [0, 128, 256, 512, 1024, 2048, 4096, 8192, 16384] #MB
-tab_pulgadas = ['14','15','17','19','23']
+tab_memoria = [0, 128, 256, 320, 512, 768, 1024, 2048, 2560, 3072, 4096, 8192, 16384] #MB
+tab_pulgadas = ['14','15','17','19', '20', '21', '22', '23', '24']
 tab_so = ['No posee','Windows XP', 'Windows Vista', 'Windows 7', 'Windows 8', 'Windows 10', 'Linux', 'Windows | Linux']
 tab_unidad_optica = ['No Posee', 'CD-R', 'CD-RW', 'DVD-R', 'DVD-RW']
 tab_estado = ['BUENO', 'REGULAR', 'MALO']
-
