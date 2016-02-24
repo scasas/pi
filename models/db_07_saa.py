@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 Categorias = db.define_table('saa_categorias'
     , Field('nombre')
-    , Field('descripcion')
+    , Field('descripcion', 'text')
     , format='%(nombre)s'
     )
 

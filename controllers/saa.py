@@ -3,7 +3,7 @@ def categorias():
     titulo = 'Categorias'
     response.view = 'load.html'
     # ABM & Consulta 
-    grid = SQLFORM.grid(Categoria
+    grid = SQLFORM.grid(Categorias
         , csv=False
         , showbuttontext=False
     )
