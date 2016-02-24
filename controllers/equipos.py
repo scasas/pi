@@ -86,7 +86,7 @@ def impresoras_insumos():
     titulo = 'Impresoras | Insumos'
     response.view = 'equipos/dispositivos.html'
     grid = SQLFORM.grid(Impresoras_insumos, csv=False, showbuttontext=False)
-    return dict(grid = grid, titulo = titulo)
+    return dict(grid = grid, titulo = titulo, button="impresoras")
 
 @auth.requires_login()
 def stock_impresoras():

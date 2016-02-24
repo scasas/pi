@@ -63,6 +63,13 @@ def _():
                 (SPAN(I(_class='glyphicon glyphicon-edit'), ' Consulta'),False, URL('pedidos', 'consulta', vars=dict(dispositivo='pedidos',id=0)))
             ]
         ),
+        (T('SAA'), False, None,
+            [
+                (SPAN(I(_class='glyphicon glyphicon-edit'), ' Articulos'),False, URL('saa', 'articulos')),
+                (SPAN(I(_class='glyphicon glyphicon-edit'), ' Ingresos'),False, URL('saa', 'ingresos')),
+                (SPAN(I(_class='glyphicon glyphicon-edit'), ' Egresos'),False, URL('saa', 'egresos'))
+            ]
+        ),
         (T('Reportes'), False, None,
             [
                 (SPAN(I(_class='glyphicon glyphicon-edit'), ' Listados'),False, URL('admin', 'list'))
