@@ -67,7 +67,8 @@ def _():
             [
                 (SPAN(I(_class='glyphicon glyphicon-edit'), ' Articulos'),False, URL('saa', 'articulos')),
                 (SPAN(I(_class='glyphicon glyphicon-edit'), ' Ingresos'),False, URL('saa', 'ingresos')),
-                (SPAN(I(_class='glyphicon glyphicon-edit'), ' Egresos'),False, URL('saa', 'egresos'))
+                (SPAN(I(_class='glyphicon glyphicon-edit'), ' Egresos'),False, URL('saa', 'egresos')),
+                (SPAN(I(_class='glyphicon glyphicon-edit'), ' Stock'),False, URL('saa', 'stock'))
             ]
         ),
         (T('Reportes'), False, None,

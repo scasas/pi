@@ -1,0 +1,66 @@
+<!-- incluyo los archivos CSS -->
+{{response.files.insert(60,URL('static','js/jquery.datatables/bootstrap/dataTables.bootstrap.css'))}}
+{{response.files.insert(61,URL('static','js/jquery.datatables/css/jquery.dataTables.css'))}}
+
+<!-- incluyo los archivos JavasScript -->
+{{response.files.insert(81,URL('static','js/jquery.datatables/js/jquery.dataTables.min.js'))}}
+{{response.files.insert(82,URL('static','js/jquery.datatables/js/jquery.dataTables.columnFilter.js'))}}
+{{response.files.insert(83,URL('static','js/jquery.datatables/js/fnReloadAjax.js'))}}
+
+<!-- Add script for dataTables -->
+{{response.files.append(URL('static', 'extensions/TableTools/css/dataTables.tableTools.css'))}}
+{{response.files.append(URL('static', 'extensions/TableTools/css/dataTables.bootstrap.css'))}}
+{{response.files.append(URL('static', 'extensions/TableTools/js/dataTables.tableTools.js'))}}
+{{response.files.append(URL('static', 'extensions/TableTools/js/dataTables.bootstrap.js'))}}
+
+{{extend 'layout.html'}}
+
+{{from applications.pi.modules.tools import *}}
+
+<h3> {{=titulo}} </h3>
+
+<div class="panel panel-default col-md-6">
+    <table class="table table-bordered ">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Articulo</th>
+                <th>Cantidad Disponible</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{for reg in grid:}}
+                <tr>
+                    <td></td>
+                    <td>{{=reg[1]}}</td>
+                    <td>{{=reg[2]}}</td>
+                </tr>
+            {{pass}}
+        </tbody>
+    </table>
+</div>
+
+<style type="text/css">
+    table .btn, table .btn-default{
+        margin: 0;
+        padding: 0;
+    }
+</style>
+
+<script type="text/javascript" >
+    $(document).ready(function() {
+
+        var oTable = $('.table').dataTable( {
+            "aaSorting": []
+            , "oLanguage": {sUrl: "{{=URL('static','js/jquery.datatables/dataTables.spanish.txt')}}"}
+            , "aLengthMenu": [50, 100, 500, 1000]
+            , "iDisplayLength": 500
+            , "sDom": 'lRfrtip'
+            , "bDeferRender": true
+            , "bPaginate": true
+        } );
+
+    });
+
+    
+</script>
