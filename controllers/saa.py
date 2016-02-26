@@ -39,7 +39,7 @@ def egresos():
 @auth.requires_login()
 def egresos_new():
 
-    art = int(11)
+    # art = int(11)
     art = int(request.vars.articulo_id)
     articulo = Articulos(art)
 
