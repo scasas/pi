@@ -15,6 +15,12 @@ Agentes = db.define_table('agentes'
     , Field('tel_celular')
     , Field('tel_fijo')
     , Field('sexo', requires=IS_IN_SET(['M', 'F']))
+    , Field('codsearch',
+                   compute=lambda r: '%s, %s: %s' % (r['apellido'], 
+                                                     r['nombres'],
+                                                     r['dni'])
+                )
     # , auth.signature
     , format='%(apellido)s %(nombres)s'
+    # , common_filter=lambda q: db['agentes'].is_active == True
     )

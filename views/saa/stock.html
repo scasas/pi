@@ -26,6 +26,7 @@
                 <th></th>
                 <th>Articulo</th>
                 <th>Cantidad Disponible</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -34,6 +35,19 @@
                     <td></td>
                     <td>{{=reg[1]}}</td>
                     <td>{{=reg[2]}}</td>
+                    <td>
+                     <!-- vars=dict(dispositivo='pedidos',id=0) -->
+                        {{if reg[2]>0: }}
+                            {{=A(
+                                IMG(
+                                    _src=URL('static','images/tools/enter.png')
+                                    , _width=24
+                                )
+                                , _href=URL(c='saa', f='egresos_new',  vars=dict(articulo_id=reg[0]), user_signature=True)
+                                , _class='btn btn-default'
+                            ) }}
+                        {{pass}}
+                    </td>
                 </tr>
             {{pass}}
         </tbody>
