@@ -19,6 +19,7 @@ def articulos():
         , csv=False
         , showbuttontext=False
         , maxtextlength=30
+        , paginate=200
     )
     return dict(form = grid, title=titulo)
 
@@ -34,6 +35,7 @@ def egresos():
         , csv=False
         , showbuttontext=False
         , maxtextlength=30
+        , paginate=200
     )
     return dict(form = grid, title=titulo)
 
@@ -111,6 +113,9 @@ def ingresos():
     grid = SQLFORM.grid(Ingresos
         , csv=False
         , showbuttontext=False
+        , maxtextlength=30
+        , paginate=200
+        , orderby = Ingresos.articulo_id
     )
     return dict(form = grid, title=titulo)
 
@@ -237,6 +242,6 @@ def test():
     #            'member.deceased']
     # orderBy = ['member.lastName']
     grid = SQLFORM.smartgrid(Agentes
-        
+
         )
     return dict(grid=grid)
