@@ -117,8 +117,10 @@ def ingresos():
 @auth.requires_login()
 def stock():
     from reportlab.lib.pagesizes import landscape, A4, LEGAL, portrait
+    
+    fecha = str(request.now.day) + '/' + str(request.now.month) + '/' + str(request.now.year)
 
-    titulo = 'Stock de Articulos a la fecha'
+    titulo = 'Stock de Articulos a la fecha: ' + fecha
     # response.view = 'load.html'
 
     query = 'SELECT articulo_id, nombre, sum(cantidad) FROM pi.stock_articulos group by articulo_id'
@@ -129,10 +131,10 @@ def stock():
     if 'pdf' in request.args:
         # response.view = 'report/stock.html'
 
-        data = [['Item', 'ARTICULO', 'CANTIDAD', 'MODIFICACION']]
+        data = [['Item', 'ARTICULO', 'CANTIDAD']]
 
         page = {}
-        page['size'] = LEGAL
+        page['size'] = A4
         page['orientation'] = portrait
 
         i=0
@@ -142,7 +144,6 @@ def stock():
                 i
                 , reg[1].upper()
                 , reg[2]
-                , ' '
                 ])
 
         return pdf(data, titulo, page)
@@ -228,3 +229,14 @@ def pdf(data, title, page):
     response.headers['Content-Type']='application/pdf'
     response.headers['Content-Disposition']= 'inline; filename=report.pdf'
     return data
+
+
+def test():
+    # columns = ['member.firstName', 'member.lastName', 'member.city',
+    #            'member.state', 'member.phone', 'member.joinedOn',
+    #            'member.deceased']
+    # orderBy = ['member.lastName']
+    grid = SQLFORM.smartgrid(Agentes
+        
+        )
+    return dict(grid=grid)

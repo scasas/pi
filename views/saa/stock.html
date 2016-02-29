@@ -27,6 +27,7 @@
     , _href=URL(c='saa', f='stock', args=['pdf'], user_signature=True)
     , _class='btn btn-default'
     , _taget="blank"
+    , _title='Imprimir Stock a la fecha'
 ) }}
 
 <div class="panel panel-default col-md-6">
@@ -54,6 +55,7 @@
                                 )
                                 , _href=URL(c='saa', f='egresos_new',  vars=dict(articulo_id=reg[0]), user_signature=True)
                                 , _class='btn btn-default'
+                                , _title='Entrega de Artículo'
                             ) }}
                         {{pass}}
                     </td>
