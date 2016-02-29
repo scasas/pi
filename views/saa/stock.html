@@ -19,6 +19,15 @@
 
 <h3> {{=titulo}} </h3>
 
+{{=A(
+    IMG(
+        _src=URL('static','images/tools/pdf.png')
+        , _width=24
+    )
+    , _href=URL(c='saa', f='stock.pdf', user_signature=True)
+    , _class='btn btn-default'
+) }}
+
 <div class="panel panel-default col-md-6">
     <table class="table table-bordered ">
         <thead>
@@ -36,7 +45,6 @@
                     <td>{{=reg[1]}}</td>
                     <td>{{=reg[2]}}</td>
                     <td>
-                     <!-- vars=dict(dispositivo='pedidos',id=0) -->
                         {{if reg[2]>0: }}
                             {{=A(
                                 IMG(
@@ -55,7 +63,7 @@
 </div>
 
 <style type="text/css">
-    table .btn, table .btn-default{
+    .btn-default{
         margin: 0;
         padding: 0;
     }

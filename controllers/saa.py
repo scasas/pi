@@ -33,6 +33,7 @@ def egresos():
         , editable=False
         , csv=False
         , showbuttontext=False
+        , maxtextlength=30
     )
     return dict(form = grid, title=titulo)
 
@@ -115,6 +116,8 @@ def ingresos():
 
 @auth.requires_login()
 def stock():
+    from reportlab.lib.pagesizes import landscape, A4, LEGAL, portrait
+
     titulo = 'Stock de Articulos a la fecha'
     # response.view = 'load.html'
 
@@ -122,4 +125,106 @@ def stock():
 
     grid = db.executesql(query)
 
-    return dict(grid = grid, titulo=titulo)    
+    # if 'pdf' in request :
+    if 'pdf' in request.args:
+        # response.view = 'report/stock.html'
+
+        data = [['Item', 'ARTICULO', 'CANTIDAD', 'MODIFICACION']]
+
+        page = {}
+        page['size'] = LEGAL
+        page['orientation'] = portrait
+
+        i=0
+        for reg in grid:
+            i=i+1
+            data.append([
+                i
+                , reg[1].upper()
+                , reg[2]
+                , ' '
+                ])
+
+        return pdf(data, titulo, page)
+        # return dict(data=data)
+    else:
+        return dict(grid = grid, titulo=titulo)
+
+
+def pdf(data, title, page):
+    from reportlab.platypus import *
+    from reportlab.lib.styles import getSampleStyleSheet
+    from reportlab.rl_config import defaultPageSize
+    from reportlab.lib.units import inch, mm, cm
+    from reportlab.lib.enums import TA_LEFT, TA_RIGHT, TA_CENTER, TA_JUSTIFY
+    # from reportlab.lib.pagesizes import landscape, A4, LEGAL
+    from reportlab.lib import colors
+    from reportlab.pdfgen import canvas
+    from uuid import uuid4
+    from cgi import escape
+    import os
+
+    heading = "Areas: "
+    # text = 'bla '* 100
+
+    styles = getSampleStyleSheet()
+    
+    tmpfilename=os.path.join(request.folder,'private',str(uuid4()))
+    
+
+    # portrait | landscape
+    # A4 | LEGAL
+    doc = SimpleDocTemplate(
+        tmpfilename
+        , pagesize=page['orientation'](page['size']) 
+        , rightMargin=1*cm, leftMargin=1*cm, topMargin=1.5*cm, bottomMargin=0.5*cm
+        )
+    
+    story = []
+    story.append(Paragraph(escape(title),styles["Title"]))
+    story.append(Paragraph(escape(heading),styles["Heading2"]))
+    # story.append(Paragraph(escape(text),styles["Normal"]))
+    # story.append(Spacer(1,0.5*inch))
+    # story.append(PageBreak())
+
+    t=Table(data)
+    t.setStyle(
+            TableStyle(
+                [
+                    # ('ALIGN',(1,1),(-2,-2),'RIGHT'),
+                    # ('ALIGN',(1,1),(-2,-2),'RIGHT'),
+                    # ('TEXTCOLOR',(1,1),(-2,-2),colors.red),
+                    # ('VALIGN',(0,0),(0,-1),'TOP'),
+                    # ('TEXTCOLOR',(0,0),(0,-1),colors.blue),
+                    # ('ALIGN',(3,1),(3,-1),'RIGHT'), #pc col ram
+                    # ('ALIGN',(4,1),(4,-1),'RIGHT'), #pc col disco
+                    ('ALIGN',(0,0),(-1,0),'CENTER'),
+                    ('ALIGN',(0,1),(0,-1),'CENTER'),
+                    # ('VALIGN',(0,-1),(-1,-1),'MIDDLE'),
+                    # ('TEXTCOLOR',(0,-1),(-1,-1),colors.green),
+                    ('INNERGRID', (0,0), (-1,-1), 0.25, colors.black),
+                    ('BOX', (0,0), (-1,-1), 0.25, colors.black),
+                    ('BACKGROUND',(0,0),(-1,0),colors.lightblue),
+                    # ('BACKGROUND',(0,0),(0,-1),colors.white),
+                ]
+            )
+        )
+    # tblStyle.add
+    # tblStyle.add
+ 
+    story.append(t)
+    
+    doc.build(story)#, onFirstPage=drawPage, onLaterPages=drawPage)
+
+    # doc.setAuthor("Author")
+    # doc.setCreator("Creator")
+    # doc.setTitle("Title")
+    # doc.setSubject("Subject") # This sets description!
+    # doc.setKeywords(["Keyword1", "Keyword2"])
+
+    data = open(tmpfilename,"rb").read()
+
+    os.unlink(tmpfilename)
+    response.headers['Content-Type']='application/pdf'
+    response.headers['Content-Disposition']= 'inline; filename=report.pdf'
+    return data
