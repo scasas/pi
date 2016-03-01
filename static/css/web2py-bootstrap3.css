@@ -1,4 +1,4 @@
-div.w2p_flash {
+div.flash {
     background-image: none;
     border-radius: 4px;
     -o-border-radius: 4px;
@@ -15,18 +15,16 @@ div.w2p_flash {
     margin: 0 0 20px;
     padding: 15px 35px 15px 15px;
 }
-div.w2p_flash.alert:hover {
+div.flash.alert:hover {
     opacity: 1;
 }
-.ie-lte8 div.w2p_flash {
+.ie-lte8 div.flash {
     filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#222222', endColorstr='#000000', GradientType=0);
 }
-.ie-lte8 div.w2p_flash:hover {
+.ie-lte8 div.flash:hover {
     filter: alpha(opacity=25);
 }
-.main-container {
-    margin-top: 20px;
-}
+
 
 div.error {
     width: auto;
@@ -37,7 +35,7 @@ div.error {
     display: inline-block;
     padding: 5px;
 }
-div.w2p_flash.alert {
+div.flash.alert {
     display: none;
     position: fixed;
     top: 70px;
@@ -136,7 +134,7 @@ header h1 {
 header .jumbotron {
     background-color: transparent;
 }
-.w2p_flash {
+.flash {
     opacity: 0.9!important;
     right: 100px;
 }
@@ -285,7 +283,6 @@ li.w2p_grid_breadcrumb_elem {
 .web2py_console .form-control {
     width: 20%;
     display: inline;
-    height: 100%;
 }
 .web2py_console #w2p_keywords {
     width: 50%;
@@ -313,4 +310,165 @@ td.w2p_fc,
 }
 input[type=checkbox], input[type=radio] {
     margin: 4px 4px 0 0;
+}
+.btn {
+    margin-right: 4px;
+}
+
+/* CSS DROPDOWN AOM */
+
+.nav-tabs {
+  display: inline-block !important;
+  border-bottom: none !important;
+  padding-top: 15px !important;
+  font-weight: bold !important;
+}
+.nav-tabs > li > a, 
+.nav-tabs > li > a:hover, 
+.nav-tabs > li > a:focus, 
+.nav-tabs > li.active > a, 
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  border: none !important;
+  border-radius: 0 !important;
+  color: #473939;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+    color:#23527C;
+}
+
+.nav-list { border-bottom: 1px solid #eee !important; }
+.nav-list > li { 
+  padding: 20px 15px 15px !important;
+  border-left: 1px solid #eee !important; 
+  width: 250px;
+}
+.nav-list > li:last-child { border-right: 1px solid #eee !important; }
+.nav-list > li > a:hover { text-decoration: none !important; }
+.nav-list > li > a > span {
+  display: block !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+  color: #473939;
+}
+
+.mega-dropdown { position: static !important;}
+.mega-dropdown-menu {
+  padding: 20px 15px 15px !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+/* PERSONA - TAB */
+
+/***
+Bootstrap Line Tabs by @keenthemes
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+Licensed under MIT
+***/
+
+/* Tabs panel */
+.tabbable-panel {
+  border:1px solid #eee;
+  padding: 10px;
+}
+
+/* Default mode */
+.tabbable-line > .nav-tabs {
+  border: none;
+  margin: 0px;
+}
+.tabbable-line > .nav-tabs > li {
+  margin-right: 2px;
+}
+.tabbable-line > .nav-tabs > li > a {
+  border: 0;
+  margin-right: 0;
+  color: #737373;
+}
+.tabbable-line > .nav-tabs > li > a > i {
+  color: #a6a6a6;
+}
+.tabbable-line > .nav-tabs > li.open, .tabbable-line > .nav-tabs > li:hover {
+  border-bottom: 4px solid #fbcdcf;
+}
+.tabbable-line > .nav-tabs > li.open > a, .tabbable-line > .nav-tabs > li:hover > a {
+  border: 0;
+  background: none !important;
+  color: #333333;
+}
+.tabbable-line > .nav-tabs > li.open > a > i, .tabbable-line > .nav-tabs > li:hover > a > i {
+  color: #a6a6a6;
+}
+.tabbable-line > .nav-tabs > li.open .dropdown-menu, .tabbable-line > .nav-tabs > li:hover .dropdown-menu {
+  margin-top: 0px;
+}
+.tabbable-line > .nav-tabs > li.active {
+  border-bottom: 4px solid #f3565d;
+  position: relative;
+}
+.tabbable-line > .nav-tabs > li.active > a {
+  border: 0;
+  color: #333333;
+}
+.tabbable-line > .nav-tabs > li.active > a > i {
+  color: #404040;
+}
+.tabbable-line > .tab-content {
+  margin-top: -3px;
+  background-color: #fff;
+  border: 0;
+  border-top: 1px solid #eee;
+  padding: 15px 0;
+}
+.portlet .tabbable-line > .tab-content {
+  padding-bottom: 0;
+}
+
+/* Below tabs mode */
+
+.tabbable-line.tabs-below > .nav-tabs > li {
+  border-top: 4px solid transparent;
+}
+.tabbable-line.tabs-below > .nav-tabs > li > a {
+  margin-top: 0;
+}
+.tabbable-line.tabs-below > .nav-tabs > li:hover {
+  border-bottom: 0;
+  border-top: 4px solid #fbcdcf;
+}
+.tabbable-line.tabs-below > .nav-tabs > li.active {
+  margin-bottom: -2px;
+  border-bottom: 0;
+  border-top: 4px solid #f3565d;
+}
+.tabbable-line.tabs-below > .tab-content {
+  margin-top: -10px;
+  border-top: 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+.list-group-item {
+    padding: 3px 5px !important;
+}
+.panel-body{
+    padding-bottom:0px !important;
+}
+.registro-label{
+    margin-top:5px;
+    border-bottom: 4px solid #fbcdcf;
+    font-weight: 550;
+    font-size: 15px;
+}
+.tabla-curso{
+    margin-left:5px;
+}
+.content-docente-curso{
+   margin-left:5px; 
+}
+
+#scrollable-dropdown-menu .tt-dropdown-menu {
+  max-height: 150px;
+  overflow-y: auto;
 }

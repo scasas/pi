@@ -1,4 +1,5 @@
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('stock'))
 def categorias():
     titulo = 'Categorias'
     response.view = 'load.html'
@@ -10,7 +11,8 @@ def categorias():
     )
     return dict(form = grid, title=titulo)
 
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('stock'))
 def articulos():
     titulo = 'Articulos'
     response.view = 'load.html'
@@ -23,7 +25,9 @@ def articulos():
     )
     return dict(form = grid, title=titulo)
 
-@auth.requires_login()
+
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('stock'))
 def egresos():
     titulo = 'Egresos'
     response.view = 'load.html'
@@ -39,7 +43,8 @@ def egresos():
     )
     return dict(form = grid, title=titulo)
 
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('stock'))
 def egresos_new():
 
     # art = int(11)
@@ -105,7 +110,8 @@ def egresos_new():
 
     return dict(form=form, articulo=articulo, grid=grid)
 
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('stock'))
 def ingresos():
     titulo = 'Ingresos'
     response.view = 'load.html'
@@ -119,7 +125,8 @@ def ingresos():
     )
     return dict(form = grid, title=titulo)
 
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('stock'))
 def stock():
     from reportlab.lib.pagesizes import landscape, A4, LEGAL, portrait
     
@@ -234,14 +241,3 @@ def pdf(data, title, page):
     response.headers['Content-Type']='application/pdf'
     response.headers['Content-Disposition']= 'inline; filename=report.pdf'
     return data
-
-
-def test():
-    # columns = ['member.firstName', 'member.lastName', 'member.city',
-    #            'member.state', 'member.phone', 'member.joinedOn',
-    #            'member.deceased']
-    # orderBy = ['member.lastName']
-    grid = SQLFORM.smartgrid(Agentes
-
-        )
-    return dict(grid=grid)

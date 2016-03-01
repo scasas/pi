@@ -1,5 +1,7 @@
 ## MARCAS ---------------------------------------------------------------------
-@auth.requires_membership('admin')
+
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def marcas():
     titulo = 'Marcas'
     response.view = 'equipos/dispositivos.html'
@@ -19,14 +21,16 @@ def marcas():
     return dict(grid=grid, titulo=titulo, button="marcas")
 
 ## PC -------------------------------------------------------------------------
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def microprocesadores():
     titulo = 'Microprocesadores'
     response.view = 'equipos/dispositivos.html'
     grid = SQLFORM.grid(Microprocesadores, csv=False, showbuttontext=False)
     return dict(grid = grid, titulo = titulo, button="microprocesadores")
 
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def placa_madre():
     titulo = 'Placa Madre'
     response.view = 'equipos/dispositivos.html'
@@ -37,7 +41,8 @@ def placa_madre():
         )
     return dict(grid = grid, titulo = titulo, button="placa_madre")
 
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def pc():
     from applications.pi.modules.modal import Modal
 
@@ -60,13 +65,15 @@ def pc():
 
 
 ## PORTATILES ------------------------------------------------------------------
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def portatiles():
     grid = SQLFORM.grid(Portatiles, csv=False, showbuttontext=False)
     return dict(grid = grid)
 
 ## IMPRESORAS ------------------------------------------------------------------
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def impresoras():
     titulo = 'Impresoras'
     response.view = 'equipos/dispositivos.html'
@@ -81,14 +88,16 @@ def impresoras():
         , button="impresoras"
         )
 
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def impresoras_insumos():
     titulo = 'Impresoras | Insumos'
     response.view = 'equipos/dispositivos.html'
     grid = SQLFORM.grid(Impresoras_insumos, csv=False, showbuttontext=False)
     return dict(grid = grid, titulo = titulo, button="impresoras")
 
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def stock_impresoras():
     grid = SQLFORM.grid(Stock_impresoras
         , orderby=db.stock_impresoras.impresora_id
@@ -100,7 +109,8 @@ def stock_impresoras():
 
 
 ## MONITORES -------------------------------------------------------------------
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def monitores():
     titulo = 'Monitores'
     response.view = 'equipos/dispositivos.html'
@@ -110,7 +120,8 @@ def monitores():
         , showbuttontext=False)
     return dict(grid = grid, titulo = titulo, button="monitores")
 
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def stock_monitores():
     grid = SQLFORM.grid(
         Stock_monitores
@@ -129,7 +140,8 @@ def stock_monitores():
     return dict(grid = grid)
 
 ## UPS | ESTABILIZADOR ---------------------------------------------------------
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def ups_estabilizador():
     titulo = 'UPS | Estabilizadores'
     response.view = 'equipos/dispositivos.html'
@@ -140,7 +152,8 @@ def ups_estabilizador():
         )
     return dict(grid = grid, titulo = titulo, button="ups_estabilizador")
 
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def stock_ups_estabilizador():
     grid = SQLFORM.grid(Stock_ups_estabilizador
         , fields = [
@@ -156,7 +169,8 @@ def stock_ups_estabilizador():
     return dict(grid = grid)
 
 
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def consulta():
 
     if request.vars.dispositivo == 'pc':

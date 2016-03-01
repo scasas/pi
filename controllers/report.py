@@ -155,7 +155,8 @@ def list_agentes():
 
     return pdf(data, 'Listado de Agentes', page)
 
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def list_pc():
 
     from applications.pi.modules.tools import *
@@ -190,7 +191,8 @@ def list_pc():
 
     return pdf(data, 'Listado de PCs', page)
 
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def list_portatiles():
 
     from applications.pi.modules.tools import *
@@ -237,7 +239,8 @@ def list_portatiles():
 
     return pdf(data, 'Listado de Portatiles', page)
 
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def list_monitores():
 
     from applications.pi.modules.tools import *
@@ -263,7 +266,8 @@ def list_monitores():
 
     return pdf(data, 'Listado de Monitores', page)
 
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def list_impresoras():
 
     from applications.pi.modules.tools import *
@@ -297,7 +301,8 @@ def list_impresoras():
 
     return pdf(data, 'Listado de Impresoras', page)
 
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def list_ups_estabilizador():
 
     from applications.pi.modules.tools import *
@@ -329,7 +334,8 @@ def list_ups_estabilizador():
 
     return pdf(data, 'Listado de UPS | Estabilizadores', page)
 
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def list_pedidos():
 
     from applications.pi.modules.tools import *
@@ -372,9 +378,8 @@ def list_pedidos():
     return pdf(data, 'Control de Pedidos', page)
 
 
-
-
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def etiqueta():
 
     from applications.pi.modules.tools import *

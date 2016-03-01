@@ -1,4 +1,5 @@
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def pedidos():
     titulo = 'Control de Pedidos'
     response.view = 'load.html'
@@ -17,7 +18,8 @@ def pedidos():
     )
     return dict(form = grid, title=titulo)
 
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def consulta():
 
     if request.vars.dispositivo == 'pedidos':

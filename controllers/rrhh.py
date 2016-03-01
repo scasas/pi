@@ -1,4 +1,5 @@
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('rrhh'))
 def agentes():
     titulo = 'Agentes'
     response.view = 'load.html'
@@ -20,7 +21,8 @@ def agentes():
 
     return dict(form = grid, title=titulo)
 
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def agente():
     # ABM & Consulta del equipamiento de un determinado agente
     # response.view = 'test.html'
@@ -42,7 +44,8 @@ def agente():
     return dict(agente = agente)
 
 
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('rrhh'))
 def areas():
     titulo = 'Areas'
     response.view = 'load.html'
@@ -54,7 +57,8 @@ def areas():
         )
     return dict(form = grid,title=titulo)
 
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def area():
     # ABM & Consulta del equipamiento de un determinado agente
     area = {}

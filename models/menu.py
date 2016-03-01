@@ -38,46 +38,59 @@ def _():
     response.menu = [
         (T('Home'), False, URL('default', 'index'), [])
     ]
-    
-    # useful links to internal and external resources
-    response.menu += [
-        #(T('My Sites'), False, URL('admin', 'default', 'site')),
-        (T('RRHH'), False, None,
-            [
-                (SPAN(I(_class='glyphicon glyphicon-edit'), ' Agentes'),False, URL('rrhh', 'agentes'))
-                , (SPAN(I(_class='glyphicon glyphicon-edit'), ' Areas'),False, URL('rrhh', 'areas'))
-            ]
-        ),
-        (T('Equipos'), False, None,
-            [
-                (SPAN(I(_class='glyphicon glyphicon-edit'), ' PC'),False, URL('equipos', 'pc'))
-                , (SPAN(I(_class='glyphicon glyphicon-edit'), ' Portatiles'),False, URL('equipos', 'portatiles'))
-                , (SPAN(I(_class='glyphicon glyphicon-edit'), ' Impresoras'),False, URL('equipos', 'stock_impresoras'))
-                , (SPAN(I(_class='glyphicon glyphicon-edit'), ' Monitores'),False, URL('equipos', 'stock_monitores'))
-                , (SPAN(I(_class='glyphicon glyphicon-edit'), ' UPS | Estabilizador'),False, URL('equipos', 'stock_ups_estabilizador'))
-            ]
-        ),
-        (T('Pedidos'), False, None,
-            [
-                (SPAN(I(_class='glyphicon glyphicon-edit'), ' ABM'),False, URL('pedidos', 'pedidos')),
-                (SPAN(I(_class='glyphicon glyphicon-edit'), ' Consulta'),False, URL('pedidos', 'consulta', vars=dict(dispositivo='pedidos',id=0)))
-            ]
-        ),
-        (T('SAA'), False, None,
-            [
-                (SPAN(I(_class='glyphicon glyphicon-edit'), ' Articulos'),False, URL('saa', 'articulos')),
-                (SPAN(I(_class='glyphicon glyphicon-edit'), ' Ingresos'),False, URL('saa', 'ingresos')),
-                (SPAN(I(_class='glyphicon glyphicon-edit'), ' Egresos'),False, URL('saa', 'egresos')),
-                # (SPAN(I(_class='glyphicon glyphicon-edit'), ' Egresos Nuevo'),False, URL('saa', 'egresos_new')),
-                (SPAN(I(_class='glyphicon glyphicon-edit'), ' Stock'),False, URL('saa', 'stock'))
-            ]
-        ),
-        (T('Reportes'), False, None,
-            [
-                (SPAN(I(_class='glyphicon glyphicon-edit'), ' Listados'),False, URL('admin', 'list'))
-            ]
-        ),
-    ]
+
+    # GRUPO COMPUTOS
+    if 1 in auth.user_groups or 2 in auth.user_groups:
+        response.menu += [
+            (T('Equipos'), False, None,
+                [
+                    (SPAN(I(_class='glyphicon glyphicon-edit'), ' PC'),False, URL('equipos', 'pc'))
+                    , (SPAN(I(_class='glyphicon glyphicon-edit'), ' Portatiles'),False, URL('equipos', 'portatiles'))
+                    , (SPAN(I(_class='glyphicon glyphicon-edit'), ' Impresoras'),False, URL('equipos', 'stock_impresoras'))
+                    , (SPAN(I(_class='glyphicon glyphicon-edit'), ' Monitores'),False, URL('equipos', 'stock_monitores'))
+                    , (SPAN(I(_class='glyphicon glyphicon-edit'), ' UPS | Estabilizador'),False, URL('equipos', 'stock_ups_estabilizador'))
+                ]
+            ),
+            (T('Pedidos'), False, None,
+                [
+                    (SPAN(I(_class='glyphicon glyphicon-edit'), ' ABM'),False, URL('pedidos', 'pedidos')),
+                    (SPAN(I(_class='glyphicon glyphicon-edit'), ' Consulta'),False, URL('pedidos', 'consulta', vars=dict(dispositivo='pedidos',id=0)))
+                ]
+            ),
+        ]
+
+    # GRUPO RRHH
+    if 1 in auth.user_groups or 4 in auth.user_groups:
+        response.menu += [
+            (T('RRHH'), False, None,
+                [
+                    (SPAN(I(_class='glyphicon glyphicon-edit'), ' Agentes'),False, URL('rrhh', 'agentes'))
+                    , (SPAN(I(_class='glyphicon glyphicon-edit'), ' Areas'),False, URL('rrhh', 'areas'))
+                ]
+            ),
+        ]
+
+    # GRUPO STOCK
+    if 1 in auth.user_groups or 3 in auth.user_groups:
+        response.menu += [
+            (T('SAA'), False, None,
+                [
+                    (SPAN(I(_class='glyphicon glyphicon-edit'), ' Articulos'),False, URL('saa', 'articulos')),
+                    (SPAN(I(_class='glyphicon glyphicon-edit'), ' Ingresos'),False, URL('saa', 'ingresos')),
+                    (SPAN(I(_class='glyphicon glyphicon-edit'), ' Egresos'),False, URL('saa', 'egresos')),
+                    (SPAN(I(_class='glyphicon glyphicon-edit'), ' Stock'),False, URL('saa', 'stock'))
+                ]
+            ),
+        ]
+
+    if auth.is_logged_in():
+        response.menu += [
+            (T('Reportes'), False, None,
+                [
+                    (SPAN(I(_class='glyphicon glyphicon-edit'), ' Listados'),False, URL('admin', 'list'))
+                ]
+            ),
+        ]
 
     # GRUPO ADMIN
     if 1 in auth.user_groups:

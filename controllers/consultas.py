@@ -1,11 +1,13 @@
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def equipos():
     # response.view='generadores/listado.html'
     response.title = ' Listado Completo '
     response.subtitle = ' - app PI'
     return dict(tipo='listado')
 
-@auth.requires_login()
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
 def get_data():
 
     query="""

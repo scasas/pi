@@ -25,11 +25,15 @@ if install:
     if db(db.auth_group).isempty():
         items = [
             {'id': 1, 'role': 'admin', 'description': 'Administación'},
-            {'id': 2, 'role': 'user', 'description': 'usuarios'}
+            {'id': 2, 'role': 'computos', 'description': 'usuarios'},
+            {'id': 3, 'role': 'stock', 'description': 'Grupo para el stock de articulos de almacen'},
+            {'id': 4, 'role': 'rrhh', 'description': 'Grupo para la administración de recurso humanos'}
         ]
         db.auth_group.bulk_insert(items)
         db.auth_membership.insert(user_id=1, group_id=1)
         db.auth_membership.insert(user_id=2, group_id=2)
+        db.auth_membership.insert(user_id=2, group_id=3)
+        db.auth_membership.insert(user_id=2, group_id=4)
 
     # add marcas
     if db(db.tab_marcas).isempty():
