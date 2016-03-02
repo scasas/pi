@@ -24,7 +24,7 @@
         _src=URL('static','images/tools/pdf.png')
         , _width=24
     )
-    , _href=URL(c='saa', f='stock', args=['pdf'], user_signature=True)
+    , _href=URL(c='libreria', f='stock', args=['pdf'], user_signature=True)
     , _class='btn btn-default'
     , _taget="blank"
     , _title='Imprimir Stock a la fecha'
@@ -53,7 +53,7 @@
                                     _src=URL('static','images/tools/enter.png')
                                     , _width=24
                                 )
-                                , _href=URL(c='saa', f='egresos_new',  vars=dict(articulo_id=reg[0]), user_signature=True)
+                                , _href=URL(c='libreria', f='egresos_new',  vars=dict(articulo_id=reg[0]), user_signature=True)
                                 , _class='btn btn-default'
                                 , _title='Entrega de Artículo'
                             ) }}

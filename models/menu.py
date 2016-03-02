@@ -73,12 +73,25 @@ def _():
     # GRUPO STOCK
     if 1 in auth.user_groups or 3 in auth.user_groups:
         response.menu += [
-            (T('SAA'), False, None,
+            (T('Insumos'), False, None,
                 [
                     (SPAN(I(_class='glyphicon glyphicon-edit'), ' Articulos'),False, URL('saa', 'articulos')),
                     (SPAN(I(_class='glyphicon glyphicon-edit'), ' Ingresos'),False, URL('saa', 'ingresos')),
                     (SPAN(I(_class='glyphicon glyphicon-edit'), ' Egresos'),False, URL('saa', 'egresos')),
                     (SPAN(I(_class='glyphicon glyphicon-edit'), ' Stock'),False, URL('saa', 'stock'))
+                ]
+            ),
+        ]
+
+    # GRUPO LIBRERIA
+    if 1 in auth.user_groups or 5 in auth.user_groups:
+        response.menu += [
+            (T('Art Libreria'), False, None,
+                [
+                    (SPAN(I(_class='glyphicon glyphicon-edit'), ' Articulos'),False, URL('libreria', 'articulos')),
+                    (SPAN(I(_class='glyphicon glyphicon-edit'), ' Ingresos'),False, URL('libreria', 'ingresos')),
+                    (SPAN(I(_class='glyphicon glyphicon-edit'), ' Egresos'),False, URL('libreria', 'egresos')),
+                    (SPAN(I(_class='glyphicon glyphicon-edit'), ' Stock'),False, URL('libreria', 'stock'))
                 ]
             ),
         ]
