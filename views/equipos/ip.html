@@ -1,0 +1,72 @@
+{{extend 'layout.html'}}
+
+<h3> Direcciones IP</h3>
+
+<br/><br/><br/>
+<!-- <table>
+	<tr>
+		<td class="btn btn-default" id="usuarios">
+			{{=A(IMG(_src=URL('static','images/dispositivos/server.png')),_href=URL(c='admin', f='panel_user'), _class='btn')}}
+			<center>PC</center>
+		</td>
+		<td class="btn btn-default" id="grupos">
+			{{=A(IMG(_src=URL('static','images/dispositivos/notebook.png')),_href=URL(c='admin', f='panel_group'), _class='btn')}}
+			<center>PORTATIL</center>
+		</td>
+		<td class="btn btn-default" id="perfiles">
+			{{=A(IMG(_src=URL('static','images/dispositivos/print.png')),_href=URL(c='admin', f='panel_membership'), _class='btn')}}
+			<center>IMPRESORA</center>
+		</td>
+		<td class="btn btn-default" id="permisos">
+			{{=A(IMG(_src=URL('static','images/dispositivos/notes.png')),_href=URL(c='admin', f='panel_permission'), _class='btn')}}
+			<center>OTRO</center>
+		</td>
+	</tr>
+</table> -->
+
+
+
+<ul class="nav nav-tabs">
+	<li class="active"><a data-toggle="tab" href="#sectionA">PC</a></li>
+	<li><a data-toggle="tab" href="#sectionB">Portatil</a></li>
+	<li><a data-toggle="tab" href="#sectionC">Impresora</a></li>
+	<!-- <li class="dropdown">
+		<a data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown <b class="caret"></b></a>
+		<ul class="dropdown-menu">
+			<li><a data-toggle="tab" href="#dropdown1">Dropdown 1</a></li>
+			<li><a data-toggle="tab" href="#dropdown2">Dropdown 2</a></li>
+		</ul>
+	</li> -->
+</ul>
+<div class="tab-content">
+	<div id="sectionA" class="tab-pane fade in active">
+		zz
+	</div>
+	<div id="sectionB" class="tab-pane fade">
+		<p>Section B content…</p>
+	</div>
+	<div id="sectionC" class="tab-pane fade">
+		<p>Section B content…</p>
+	</div>
+	<!-- <div id="dropdown1" class="tab-pane fade">
+		<p>Dropdown 1 content…</p>
+	</div>
+	<div id="dropdown2" class="tab-pane fade">
+		<p>Dropdown 2 content…</p>
+	</div> -->
+</div>
+
+
+<style type="text/css">
+	table tr td img{
+		max-width: 80px;
+		max-height: 80px;
+	}
+</style>
+
+<script type="text/javascript">
+	$( document ).ready(function() {
+		$('table tr td.btn-success').removeClass('btn-success');
+
+	});
+</script>
