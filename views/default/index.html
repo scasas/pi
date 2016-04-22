@@ -3,15 +3,16 @@
 {{extend 'layout.html'}}
 
 {{block header}}
-    <header class="container-fluid background">
+    <!-- <header class="container-fluid">
       <div class="jumbotron text-center">
-        {{if response.title:}}
-        <h1>{{=response.title}}
-          <small>{{=response.subtitle or ''}}</small></h1>
-        {{pass}}
+
       </div>
-    </header>
+    </header> -->
 {{end}}
+
+{{if response.title:}}
+    <h1>{{=response.title}}</h1>
+{{pass}}
 
 {{if 'message' in globals():}}
 <h2>{{=message}}</h2>

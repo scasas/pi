@@ -69,3 +69,21 @@ Portatiles = db.define_table('portatiles'
     , Field('observaciones', 'text')
     # , auth.signature
     )
+
+
+# DIRECCION DE RED ----------------------------------------------------------------------
+IP = db.define_table('direcciones_ip'
+    , Field('direccion', notnull=True, length=12, unique=True)
+    , Field('dispositivo_tipo', requires=IS_IN_SET(tab_dispositivo, error_message='Debes seleccionar el dispositivo') )
+    , Field('dispositivo_id')
+    , Field('dispositivo_otro', label="Vinculacion")
+    # , auth.signature
+    )
+
+MAC = db.define_table('direcciones_mac'
+    , Field('direccion', notnull=True, length=17, unique=True)
+    , Field('dispositivo_tipo', requires=IS_IN_SET(tab_dispositivo, error_message='Debes seleccionar el dispositivo') )
+    , Field('dispositivo_id')
+    , Field('dispositivo_otro', label="Vinculacion")
+    # , auth.signature
+    )

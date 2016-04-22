@@ -5,8 +5,8 @@
 ## Customize your APP title, subtitle and menus here
 #########################################################################
 
-response.logo = A(B('PI'),'',
-                  _class="navbar-brand",_href="http://www.web2py.com/",
+response.logo = A(IMG(_src=URL('static','images/pi_24_blanco.png')),'',
+                  _class="navbar-brand",_href="#",
                   _id="web2py-logo")
 response.title = request.application.replace('_',' ').title()
 response.subtitle = ''

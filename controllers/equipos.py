@@ -207,3 +207,21 @@ def consulta():
         redirect(URL(c='default', f='index'))
 
     return dict(grid = grid, titulo=titulo)
+
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
+def ip():
+    return dict(grid = SQLFORM.grid(IP
+        , csv=False
+        , showbuttontext=False
+        )
+    )
+
+@auth.requires(auth.has_membership('admin') or \
+               auth.has_membership('computos'))
+def mac():
+    return dict(grid = SQLFORM.grid(MAC
+        , csv=False
+        , showbuttontext=False
+        )
+    )
